@@ -1,10 +1,8 @@
-import 'package:cashier_mate/utilities/string_constant.dart';
 import 'package:cashier_mate/view_models/main_view_models.dart';
-import 'package:cashier_mate/components/item_card.dart';
-import 'package:cashier_mate/models/product_type.dart';
 import 'package:cashier_mate/views/home_page.dart';
 import 'package:cashier_mate/views/manual_page.dart';
 import 'package:cashier_mate/views/order_page.dart';
+import 'package:cashier_mate/views/settings_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,8 +17,9 @@ class MainPageState extends State<MainPage> {
 
   final List<Widget> children = [
     HomePage(),
-    ManualPage(),
-    OrderPage(),
+    const ManualPage(),
+    const OrderPage(),
+    const SettingsPage(),
   ];
 
   void onItemTapped(int index) {
