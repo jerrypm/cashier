@@ -1,7 +1,7 @@
 import 'package:cashier_mate/Utilities/string_constant.dart'; // string constant file
 import 'package:cashier_mate/views/main_page.dart';
 import 'package:flutter/material.dart'; // default package
-import 'views/login_page.dart'; //
+import '../views/login_page.dart'; //
 import 'package:shared_preferences/shared_preferences.dart'; // save data
 
 void main() => runApp(const MyApp());
