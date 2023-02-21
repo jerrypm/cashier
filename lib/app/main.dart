@@ -2,7 +2,7 @@ import 'package:cashier_mate/Utilities/string_constant.dart'; // string constant
 import 'package:cashier_mate/views/main_page.dart';
 import 'package:flutter/material.dart'; // default package
 import 'package:cashier_mate/views/login_page.dart';
-import 'package:shared_preferences/shared_preferences.dart'; // save data
+import 'package:cashier_mate/models/product_type.dart'; // save data
 
 void main() => runApp(const MyApp());
 
@@ -29,12 +29,5 @@ class MyApp extends StatelessWidget {
         },
       ),
     );
-  }
-
-  // Function ini untuk check login
-  Future<bool> checkLogin() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool isLoggedIn = prefs.getBool(Texts.isLoginKey()) ?? false;
-    return isLoggedIn;
   }
 }

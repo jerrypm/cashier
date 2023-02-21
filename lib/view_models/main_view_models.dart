@@ -3,8 +3,11 @@ import 'package:cashier_mate/services/auth_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:cashier_mate/utilities/string_constant.dart';
 import 'package:cashier_mate/views/login_page.dart';
+import 'package:cashier_mate/models/product_type.dart';
 
 class HomeViewModel {
+  ViewType viewType = ViewType.grid;
+
   // save logout
 
   Future<void> navigationLogout(BuildContext context) async {
@@ -21,4 +24,12 @@ class HomeViewModel {
       ),
     );
   }
+
+  // void handleViewType() {
+  //   if (getGridView()) {
+  //     //MARK:
+  //   } else {
+
+  //   }
+  // }
 }

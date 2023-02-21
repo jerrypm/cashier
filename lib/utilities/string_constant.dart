@@ -31,6 +31,7 @@ class Texts {
 
   //MARK: Keys
   static String isLoginKey() => 'isLogged';
+  static String isGrid() => 'isGrid';
   static String regEx() => r'^[a-z A-Z]+$';
   static String regExEmail() =>
       r'^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$';

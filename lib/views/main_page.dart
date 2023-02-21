@@ -15,6 +15,7 @@ class MainPageState extends State<MainPage> {
   final HomeViewModel homeViewModel = HomeViewModel();
   int selectedIndex = 0;
 
+  //MARK: List Items Bottom Bar
   final List<Widget> children = [
     HomePage(),
     const ManualPage(),
@@ -22,6 +23,7 @@ class MainPageState extends State<MainPage> {
     const SettingsPage(),
   ];
 
+  //MARK: Action Tap Index Bottom Nav bar
   void onItemTapped(int index) {
     setState(() {
       selectedIndex = index;
@@ -37,17 +39,26 @@ class MainPageState extends State<MainPage> {
 
       //MARK: Tabbar Navigation
       bottomNavigationBar: CupertinoTabBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.list_alt), label: 'Home'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.library_books), label: 'Manuals'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.notes_outlined), label: 'Order'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.settings), label: 'Settings'),
-        ],
         currentIndex: selectedIndex,
         onTap: onItemTapped,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list_alt),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.library_books),
+            label: 'Manuals',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notes_outlined),
+            label: 'Order',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
+        ],
       ),
     );
   }
