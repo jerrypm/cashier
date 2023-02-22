@@ -17,15 +17,6 @@ class HomePageState extends State<HomePage> {
   final HomeViewModel homeViewModel = HomeViewModel();
   List<ItemArrayList> itemList = listData();
 
-  int _crossAxisCount = 2;
-  double _aspectRatio = 1.5;
-
-  @override
-  void initState() {
-    // homeViewModel.handleViewType();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,16 +31,16 @@ class HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             icon: Icon(homeViewModel.viewType == ViewType.list
-                ? Icons.grid_on
-                : Icons.view_list),
+                ? Icons.window
+                : Icons.view_list_rounded),
             onPressed: () {
               if (homeViewModel.viewType == ViewType.list) {
-                _crossAxisCount = 2;
-                _aspectRatio = 1.5;
+                homeViewModel.crossAxisCount = 2;
+                homeViewModel.aspectRatio = 1.4;
                 homeViewModel.viewType = ViewType.grid;
               } else {
-                _crossAxisCount = 1;
-                _aspectRatio = 5;
+                homeViewModel.crossAxisCount = 1;
+                homeViewModel.aspectRatio = 4;
                 homeViewModel.viewType = ViewType.list;
               }
               setState(() {});
@@ -62,42 +53,16 @@ class HomePageState extends State<HomePage> {
       body: Container(
         padding: const EdgeInsets.all(16),
         child: Container(
-          margin: const EdgeInsets.all(8),
+          margin: const EdgeInsets.all(4),
           child: GridView.count(
-            crossAxisCount: _crossAxisCount,
-            childAspectRatio: _aspectRatio,
+            crossAxisCount: homeViewModel.crossAxisCount,
+            childAspectRatio: homeViewModel.aspectRatio,
             children: itemList.map((ItemArrayList item) {
+              debugPrint('to late');
               return getGridItem(item, homeViewModel.viewType);
             }).toList(),
           ),
         ),
-
-        // ListView.builder(
-        //   itemCount: listData().length + 1,
-        //   physics: const ScrollPhysics(),
-        //   itemBuilder: (BuildContext context, int index) {
-        //     if (index == 0) {
-        //       return Container(
-        //         height: 100.0,
-        //         decoration: const BoxDecoration(
-        //           color: Colors.orange,
-        //           borderRadius: BorderRadius.all(
-        //             Radius.circular(
-        //               16.0,
-        //             ),
-        //           ),
-        //         ),
-        //       );
-        //     } else {
-        //       return ItemCardWidget(
-        //         context: context,
-        //         imageUrl: listData()[index - 1].imageUrl,
-        //         title: listData()[index - 1].title,
-        //         price: listData()[index - 1].price,
-        //       );
-        //     }
-        //   },
-        // ),
       ),
     );
   }

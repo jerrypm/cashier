@@ -18,33 +18,47 @@ GridTile getGridItem(ItemArrayList item, ViewType viewType) {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(item.title, style: const TextStyle(fontSize: 20)),
-                    Text(item.price, style: const TextStyle(fontSize: 15)),
+                    Text(item.title,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        )),
+                    Text(item.price,
+                        style: const TextStyle(
+                          fontSize: 15,
+                        )),
                   ],
                 )
               ],
             ),
           )
         //MARK: Grid Data
-        : Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Expanded(
+        : Container(
+            // color: Colors.amber,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Expanded(
                   child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Container(
-                  child: Image.network(item.imageUrl),
+                    borderRadius: BorderRadius.circular(10),
+                    child: Container(
+                      child: Image.network(item.imageUrl),
+                    ),
+                  ),
                 ),
-              )),
-              const SizedBox(
-                height: 5.0,
-              ),
-              Text(
-                item.title,
-                style: const TextStyle(fontSize: 15),
-              ),
-              const SizedBox(height: 5)
-            ],
+                const SizedBox(
+                  height: 10.0,
+                ),
+                Text(
+                  item.title,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 5)
+              ],
+            ),
           ),
   );
 }

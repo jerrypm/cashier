@@ -8,6 +8,9 @@ import 'package:cashier_mate/models/product_type.dart';
 class HomeViewModel {
   ViewType viewType = ViewType.grid;
 
+  int crossAxisCount = 2;
+  double aspectRatio = 1.4;
+
   // save logout
 
   Future<void> navigationLogout(BuildContext context) async {
@@ -24,12 +27,4 @@ class HomeViewModel {
       ),
     );
   }
-
-  // void handleViewType() {
-  //   if (getGridView()) {
-  //     //MARK:
-  //   } else {
-
-  //   }
-  // }
 }

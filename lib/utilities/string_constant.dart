@@ -1,8 +1,8 @@
 class Texts {
   //MARK: Default String
   static String titleApp() => 'Casier Mate';
-  static String titleHome() => 'Home Page';
-  static String welcomeMsg() => 'My app';
+  static String titleHome() => 'Home';
+  static String welcomeMsg() => 'Cashier app';
 
   //MARK: Button
   static String signIn() => 'Sign In';

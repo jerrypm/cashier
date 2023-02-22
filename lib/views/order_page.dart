@@ -7,7 +7,9 @@ class OrderPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Dashboard"),
+        title: const Text("Order"),
+        foregroundColor: Colors.grey[900],
+        backgroundColor: Colors.white,
         actions: const [],
       ),
       body: Container(

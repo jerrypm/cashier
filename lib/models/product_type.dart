@@ -18,20 +18,5 @@ class ItemArrayList {
 // Function for check login
 Future<bool> checkLogin() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  bool isLoggedIn = prefs.getBool(Texts.isLoginKey()) ?? false;
-  return isLoggedIn;
-}
-
-// Function for grid view Read
-Future<bool> getGridView() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  bool isGridView = prefs.getBool(Texts.isGrid()) ?? false;
-  return isGridView;
-}
-
-// Function for grid view Write
-Future<bool> setGridView(bool isGrid) async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  bool isGridView = await prefs.setBool(Texts.isGrid(), true);
-  return isGridView;
+  return prefs.getBool(Texts.isLoginKey()) ?? false;
 }
