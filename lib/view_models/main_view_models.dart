@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:cashier_mate/services/auth_service.dart';
+import 'package:cashier_mate/services/app_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:cashier_mate/utilities/string_constant.dart';
 import 'package:cashier_mate/views/login_page.dart';
 import 'package:cashier_mate/models/product_type.dart';
 
 class HomeViewModel {
-  ViewType viewType = ViewType.grid;
+  ViewType viewType = ViewType.list;
 
-  int crossAxisCount = 2;
-  double aspectRatio = 1.4;
+  //MARK: gride
+  // int crossAxisCount = 2;
+  // double aspectRatio = 1.4;
+
+  //MARK: list
+  int crossAxisCount = 1;
+  double aspectRatio = 4;
 
   // save logout
 
@@ -25,6 +30,19 @@ class HomeViewModel {
         transitionDuration: Duration.zero,
         reverseTransitionDuration: Duration.zero,
       ),
+    );
+  }
+
+  //MARK: Get List Items
+  void handleItemsList(BuildContext context) async {
+    AppService().menuList(
+      (items, status) async {
+        if (status) {
+          debugPrint('${items?.data?[1].imageUrl}success');
+        } else {
+          debugPrint('failed');
+        }
+      },
     );
   }
 }

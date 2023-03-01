@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:cashier_mate/models/user_model.dart';
-import 'package:cashier_mate/services/auth_service.dart';
+import 'package:cashier_mate/services/app_service.dart';
 import 'package:cashier_mate/utilities/alert_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -21,7 +21,7 @@ class LoginViewModel {
     String email,
     String password,
   ) async {
-    AuthService().signIn(email, password, (user, status) async {
+    AppService().signIn(email, password, (user, status) async {
       if (status) {
         // Save is_login
         SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -72,7 +72,7 @@ class RegisterViewModel {
     String email,
     String password,
   ) async {
-    AuthService().signUp(name, email, password, (user, status) async {
+    AppService().signUp(name, email, password, (user, status) async {
       if (status) {
         // Save is_login
         SharedPreferences prefs = await SharedPreferences.getInstance();

@@ -18,25 +18,25 @@ List<ItemArrayList> listData() {
       imageUrl:
           "https://kbu-cdn.com/dk/wp-content/uploads/curcuma-fried-chicken.jpg",
       title: "Birier Fried Chicken",
-      price: "Rp 14.000",
+      price: "Rp 12.000",
     ),
     ItemArrayList(
       imageUrl:
           "https://kbu-cdn.com/dk/wp-content/uploads/fire-chicken-wings.jpg",
       title: "Water Chicken Wings",
-      price: "Rp 22.000",
+      price: "Rp 24.000",
     ),
     ItemArrayList(
       imageUrl:
           "https://kbu-cdn.com/dk/wp-content/uploads/curcuma-fried-chicken.jpg",
       title: "Kpop Fried Chicken",
-      price: "Rp 14.000",
+      price: "Rp 19.000",
     ),
     ItemArrayList(
       imageUrl:
           "https://kbu-cdn.com/dk/wp-content/uploads/fire-chicken-wings.jpg",
       title: "Earth Chicken Wings",
-      price: "Rp 22.000",
+      price: "Rp 20.000",
     ),
   ];
 }

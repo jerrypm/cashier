@@ -19,6 +19,7 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    homeViewModel.handleItemsList(context);
     return Scaffold(
       //MARK: Main background
       backgroundColor: Colors.white.withOpacity(0.9),
@@ -50,19 +51,46 @@ class HomePageState extends State<HomePage> {
       ),
 
       //MARK: Body
-      body: Container(
-        padding: const EdgeInsets.all(16),
-        child: Container(
-          margin: const EdgeInsets.all(4),
-          child: GridView.count(
-            crossAxisCount: homeViewModel.crossAxisCount,
-            childAspectRatio: homeViewModel.aspectRatio,
-            children: itemList.map((ItemArrayList item) {
-              debugPrint('to late');
-              return getGridItem(item, homeViewModel.viewType);
-            }).toList(),
+      body: Column(
+        children: [
+          Container(
+            height: 80,
+            padding: const EdgeInsets.all(16),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Expanded(
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Search...',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 10.0),
+                Center(
+                  child: Icon(Icons.search),
+                ),
+              ],
+            ),
           ),
-        ),
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              child: Container(
+                margin: const EdgeInsets.all(4),
+                child: GridView.count(
+                  crossAxisCount: homeViewModel.crossAxisCount,
+                  childAspectRatio: homeViewModel.aspectRatio,
+                  children: itemList.map((ItemArrayList item) {
+                    debugPrint('to late');
+                    return getGridItem(item, homeViewModel.viewType);
+                  }).toList(),
+                ),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
