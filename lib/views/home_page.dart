@@ -1,8 +1,8 @@
-import 'package:cashier_mate/models/product_type.dart';
-import 'package:cashier_mate/utilities/string_constant.dart';
-import 'package:cashier_mate/view_models/main_view_models.dart';
-import 'package:cashier_mate/widgets/grid_item.dart';
-import 'package:cashier_mate/utilities/data_constant.dart';
+import '../../models/product_type.dart';
+import '../../utilities/string_constant.dart';
+import '../../view_models/main_view_models.dart';
+import '../../widgets/grid_item.dart';
+import '../../utilities/data_constant.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {

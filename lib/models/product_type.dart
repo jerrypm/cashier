@@ -1,5 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart'; // save data
-import 'package:cashier_mate/Utilities/string_constant.dart'; // string constant file
+import '../../Utilities/string_constant.dart'; // string constant file
 
 enum ViewType {
   grid,

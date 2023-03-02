@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:cashier_mate/services/app_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:cashier_mate/utilities/string_constant.dart';
-import 'package:cashier_mate/views/login_page.dart';
-import 'package:cashier_mate/models/product_type.dart';
+import '../../services/app_service.dart';
+import '../../utilities/string_constant.dart';
+import '../../views/login_page.dart';
+import '../../models/product_type.dart';
 
 class HomeViewModel {
   ViewType viewType = ViewType.list;

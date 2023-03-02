@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:cashier_mate/Utilities/string_constant.dart';
-import 'package:cashier_mate/models/user_model.dart';
-import 'package:cashier_mate/models/menu_model.dart';
+import '../../Utilities/string_constant.dart';
+import '../../models/user_model.dart';
+import '../../models/menu_model.dart';
 import 'package:http/http.dart' as http;
 // import 'package:connectivity_plus/connectivity_plus.dart';
 

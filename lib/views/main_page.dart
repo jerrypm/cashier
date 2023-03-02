@@ -1,8 +1,8 @@
-import 'package:cashier_mate/view_models/main_view_models.dart';
-import 'package:cashier_mate/views/home_page.dart';
-import 'package:cashier_mate/views/manual_page.dart';
-import 'package:cashier_mate/views/order_page.dart';
-import 'package:cashier_mate/views/settings_page.dart';
+import '../../view_models/main_view_models.dart';
+import '../../views/home_page.dart';
+import '../../views/manual_page.dart';
+import '../../views/order_page.dart';
+import '../../views/settings_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

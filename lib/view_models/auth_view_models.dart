@@ -1,14 +1,11 @@
-import 'dart:convert';
-import 'package:cashier_mate/models/user_model.dart';
-import 'package:cashier_mate/services/app_service.dart';
-import 'package:cashier_mate/utilities/alert_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:cashier_mate/utilities/string_constant.dart';
-
-import 'package:cashier_mate/views/home_page.dart';
-import 'package:cashier_mate/views/register_page.dart';
-import 'package:cashier_mate/views/login_page.dart';
+import '../../services/app_service.dart';
+import '../../utilities/alert_dialog.dart';
+import '../../utilities/string_constant.dart';
+import '../../views/home_page.dart';
+import '../../views/register_page.dart';
+import '../../views/login_page.dart';
 
 /*
 

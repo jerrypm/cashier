@@ -1,4 +1,4 @@
-import 'package:cashier_mate/models/product_type.dart';
+import '../../models/product_type.dart';
 
 List<ItemArrayList> listData() {
   return [

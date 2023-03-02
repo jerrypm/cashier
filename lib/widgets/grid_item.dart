@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cashier_mate/models/product_type.dart';
+import '../../models/product_type.dart';
 
 //Mark: Change UI Grid OR List
 GridTile getGridItem(ItemArrayList item, ViewType viewType) {
