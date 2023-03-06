@@ -16,8 +16,10 @@ class HomeViewModel {
   int crossAxisCount = 1;
   double aspectRatio = 4;
 
-  // save logout
+  //MARK: Total Item
+  int totalOrders = 1;
 
+  //MARK: Save logout
   Future<void> navigationLogout(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove(Texts.isLoginKey());

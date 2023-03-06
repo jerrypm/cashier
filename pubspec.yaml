@@ -40,7 +40,7 @@ dependencies:
   shared_preferences: ^2.0.17 #<--For local save or load data
   connectivity_plus: ^3.0.3 #<-- cek conection
   auto_size_text: ^3.0.0
-  blue_thermal_printer:
+  blue_thermal_printer: ^1.2.3 #<-- for printer just android
 
 flutter_icons: #<-- di tambahakan dari sini
   android: "launcher_icon"

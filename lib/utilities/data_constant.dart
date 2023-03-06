@@ -38,5 +38,17 @@ List<ItemArrayList> listData() {
       title: "Earth Chicken Wings",
       price: "Rp 20.000",
     ),
+    ItemArrayList(
+      imageUrl:
+          "https://kbu-cdn.com/dk/wp-content/uploads/fire-chicken-wings.jpg",
+      title: "Earth Chicken Wings",
+      price: "Rp 20.000",
+    ),
+    ItemArrayList(
+      imageUrl:
+          "https://kbu-cdn.com/dk/wp-content/uploads/fire-chicken-wings.jpg",
+      title: "Earth Chicken Wings",
+      price: "Rp 20.000",
+    ),
   ];
 }

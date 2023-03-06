@@ -6,7 +6,9 @@ import '../../utilities/data_constant.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+  const HomePage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   HomePageState createState() => HomePageState();
@@ -16,6 +18,17 @@ class HomePageState extends State<HomePage> {
   // HomePageState({super.key});
   final HomeViewModel homeViewModel = HomeViewModel();
   List<ItemArrayList> itemList = listData();
+  List<ItemArrayList> dispaly_list = List.from(listData());
+
+  void updateList(String value) {
+    //MARK: This function will filter the list
+    setState(() {
+      dispaly_list = itemList
+          .where((element) =>
+              element.title.toLowerCase().contains(value.toLowerCase()))
+          .toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +39,7 @@ class HomePageState extends State<HomePage> {
 
       // MARK: App Bar
       appBar: AppBar(
+        elevation: 0, // for background transparent
         backgroundColor: Colors.white,
         foregroundColor: Colors.grey[900],
         title: Text(Texts.titleHome()),
@@ -37,7 +51,7 @@ class HomePageState extends State<HomePage> {
             onPressed: () {
               if (homeViewModel.viewType == ViewType.list) {
                 homeViewModel.crossAxisCount = 2;
-                homeViewModel.aspectRatio = 1.4;
+                homeViewModel.aspectRatio = 1.5;
                 homeViewModel.viewType = ViewType.grid;
               } else {
                 homeViewModel.crossAxisCount = 1;
@@ -51,45 +65,79 @@ class HomePageState extends State<HomePage> {
       ),
 
       //MARK: Body
-      body: Column(
+      body: Stack(
         children: [
-          Container(
-            height: 80,
-            padding: const EdgeInsets.all(16),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Search...',
-                      border: OutlineInputBorder(),
+          Column(
+            children: [
+              Container(
+                height: 80,
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        onTap: () {
+                          print('data ${MediaQuery.of(context).size.width}');
+                        },
+                        onChanged: (value) => updateList(value),
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: const Color(0xfff3f6f4),
+                          hintText: Texts.txtSearch(),
+                          border: const OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(12.0)),
+                            borderSide: BorderSide.none,
+                          ),
+                          prefixIcon: Icon(Icons.search),
+                          prefixIconColor: Colors.grey,
+                          contentPadding: EdgeInsets.all(10),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.only(
+                      bottom: (homeViewModel.totalOrders > 0) ? 80 : 0),
+                  child: Container(
+                    margin: const EdgeInsets.all(12),
+                    child: GridView.count(
+                      crossAxisCount: homeViewModel.crossAxisCount,
+                      childAspectRatio: homeViewModel.aspectRatio,
+                      children: dispaly_list.map((ItemArrayList item) {
+                        //
+                        debugPrint('to late');
+                        return getGridItem(item, homeViewModel.viewType);
+                      }).toList(),
                     ),
                   ),
                 ),
-                SizedBox(width: 10.0),
-                Center(
-                  child: Icon(Icons.search),
-                ),
-              ],
-            ),
+              )
+            ],
           ),
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(8),
+          Visibility(
+            visible: (homeViewModel.totalOrders > 0),
+            child: Positioned(
+              bottom: 24,
+              left: 16,
+              right: 16,
               child: Container(
-                margin: const EdgeInsets.all(4),
-                child: GridView.count(
-                  crossAxisCount: homeViewModel.crossAxisCount,
-                  childAspectRatio: homeViewModel.aspectRatio,
-                  children: itemList.map((ItemArrayList item) {
-                    debugPrint('to late');
-                    return getGridItem(item, homeViewModel.viewType);
-                  }).toList(),
+                height: 70.0,
+                decoration: const BoxDecoration(
+                  color: Colors.blueAccent,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(
+                      16.0,
+                    ),
+                  ),
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      themeMode: ThemeMode.light, // set static light mode
       debugShowCheckedModeBanner: false, // hide debug mode
       //'title:' On iOS this value cannot be used.
       // to use this titile in iOS so change in

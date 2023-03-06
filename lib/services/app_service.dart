@@ -72,7 +72,8 @@ class AppService extends ChangeNotifier {
     );
 
     if (response.statusCode == 200) {
-      UserResponse user = UserResponse.fromJson(json.decode(response.body));
+      UserResponse user =
+          UserResponse.fromJson(json.decode(response.body)); // passing model
       completion(user, true);
     } else {
       completion(null, false);

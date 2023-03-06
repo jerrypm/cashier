@@ -1,4 +1,6 @@
 PODS:
+  - blue_thermal_printer (0.0.1):
+    - Flutter
   - connectivity_plus (0.0.1):
     - Flutter
     - ReachabilitySwift
@@ -9,6 +11,7 @@ PODS:
     - FlutterMacOS
 
 DEPENDENCIES:
+  - blue_thermal_printer (from `.symlinks/plugins/blue_thermal_printer/ios`)
   - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
   - Flutter (from `Flutter`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/ios`)
@@ -18,6 +21,8 @@ SPEC REPOS:
     - ReachabilitySwift
 
 EXTERNAL SOURCES:
+  blue_thermal_printer:
+    :path: ".symlinks/plugins/blue_thermal_printer/ios"
   connectivity_plus:
     :path: ".symlinks/plugins/connectivity_plus/ios"
   Flutter:
@@ -26,6 +31,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/shared_preferences_foundation/ios"
 
 SPEC CHECKSUMS:
+  blue_thermal_printer: c83405103d2c17f8d67aaa43fcff94df5d616a66
   connectivity_plus: 413a8857dd5d9f1c399a39130850d02fe0feaf7e
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825

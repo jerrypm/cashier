@@ -44,4 +44,7 @@ class Texts {
   // Hardcoded login credentials
   static String emailLogin = 'admin@mail.com';
   static String passwordLogin = '12345678';
+
+  //MARK: Other
+  static String txtSearch() => 'Search...';
 }
