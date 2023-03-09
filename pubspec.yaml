@@ -41,6 +41,7 @@ dependencies:
   connectivity_plus: ^3.0.3 #<-- cek conection
   auto_size_text: ^3.0.0
   blue_thermal_printer: ^1.2.3 #<-- for printer just android
+  get: ^4.6.5
 
 flutter_icons: #<-- di tambahakan dari sini
   android: "launcher_icon"
@@ -70,9 +71,12 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/icons/add_menu_flutter.png
+    - assets/icons/home.png
+    - assets/icons/orders.png
+    - assets/icons/manual.png
+    - assets/icons/settings.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

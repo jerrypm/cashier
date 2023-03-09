@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../services/app_service.dart';
 import '../../utilities/string_constant.dart';
-import '../../views/login_page.dart';
+import '../screens/auth/login_page.dart';
 import '../../models/product_type.dart';
+import 'package:get/get.dart';
 
 class HomeViewModel {
   ViewType viewType = ViewType.list;
@@ -17,7 +18,7 @@ class HomeViewModel {
   double aspectRatio = 4;
 
   //MARK: Total Item
-  int totalOrders = 1;
+  int totalOrders = 0;
 
   //MARK: Save logout
   Future<void> navigationLogout(BuildContext context) async {
@@ -26,13 +27,7 @@ class HomeViewModel {
 
     // navigation back to root login
     if (!context.mounted) return;
-    Navigator.of(context).pushReplacement(
-      PageRouteBuilder(
-        pageBuilder: (context, animation1, animation2) => LoginPage(),
-        transitionDuration: Duration.zero,
-        reverseTransitionDuration: Duration.zero,
-      ),
-    );
+    Get.offAll(LoginPage);
   }
 
   //MARK: Get List Items

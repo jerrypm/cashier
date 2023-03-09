@@ -20,7 +20,7 @@ GridTile getGridItem(ItemArrayList item, ViewType viewType) {
                   children: [
                     Text(item.title,
                         style: const TextStyle(
-                          fontSize: 16,
+                          fontSize: 14,
                           fontWeight: FontWeight.bold,
                         )),
                     Text(item.price,
@@ -28,7 +28,28 @@ GridTile getGridItem(ItemArrayList item, ViewType viewType) {
                           fontSize: 15,
                         )),
                   ],
-                )
+                ),
+                const Expanded(
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: 20.0,
+                    child: Text('-', textAlign: TextAlign.right),
+                  ),
+                ),
+                const Expanded(
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: 20.0,
+                    child: Text('0', textAlign: TextAlign.right),
+                  ),
+                ),
+                const Expanded(
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: 20.0,
+                    child: Text('+', textAlign: TextAlign.right),
+                  ),
+                ),
               ],
             ),
           )

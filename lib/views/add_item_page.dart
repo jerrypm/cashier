@@ -16,14 +16,6 @@ class AddItemsPageState extends State<AddItemsPage> {
       ),
       body: Container(
         height: 100.0,
-        decoration: const BoxDecoration(
-          color: Colors.orange,
-          borderRadius: BorderRadius.all(
-            Radius.circular(
-              16.0,
-            ),
-          ),
-        ),
       ),
     );
   }

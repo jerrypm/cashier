@@ -1,10 +1,12 @@
 import '../../view_models/main_view_models.dart';
-import '../../views/home_page.dart';
-import '../../views/manual_page.dart';
-import '../../views/order_page.dart';
-import '../../views/settings_page.dart';
+import '../../screens/home/home_page.dart';
+import '../../screens/manuals/manual_page.dart';
+import '../../screens/order/order_page.dart';
+import '../../screens/settings/settings_page.dart';
+import '../../views/add_item_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -17,8 +19,9 @@ class MainPageState extends State<MainPage> {
 
   //MARK: List Items Bottom Bar
   final List<Widget> children = [
-    HomePage(),
+    const HomePage(),
     const ManualPage(),
+    AddItemsPage(),
     const OrderPage(),
     const SettingsPage(),
   ];
@@ -26,8 +29,12 @@ class MainPageState extends State<MainPage> {
   //MARK: Action Tap Index Bottom Nav bar
   void onItemTapped(int index) {
     setState(() {
-      selectedIndex = index;
-      debugPrint('$index');
+      if (index == 2) {
+        Get.to(AddItemsPage(), fullscreenDialog: true);
+        debugPrint('$index yoo loo');
+      } else {
+        selectedIndex = index;
+      }
     });
   }
 
@@ -41,20 +48,23 @@ class MainPageState extends State<MainPage> {
       bottomNavigationBar: CupertinoTabBar(
         currentIndex: selectedIndex,
         onTap: onItemTapped,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
+        items: <BottomNavigationBarItem>[
+          const BottomNavigationBarItem(
             icon: Icon(Icons.list_alt),
             label: 'Home',
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.library_books),
             label: 'Manuals',
           ),
           BottomNavigationBarItem(
+            icon: Image.asset('assets/icons/add_menu_flutter.png'),
+          ),
+          const BottomNavigationBarItem(
             icon: Icon(Icons.notes_outlined),
             label: 'Order',
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: 'Settings',
           ),

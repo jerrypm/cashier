@@ -3,9 +3,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../services/app_service.dart';
 import '../../utilities/alert_dialog.dart';
 import '../../utilities/string_constant.dart';
-import '../../views/home_page.dart';
-import '../../views/register_page.dart';
-import '../../views/login_page.dart';
+import '../screens/home/home_page.dart';
+import '../screens/auth/register_page.dart';
+import '../screens/auth/login_page.dart';
+import 'package:get/get.dart';
 
 /*
 
@@ -26,13 +27,7 @@ class LoginViewModel {
 
         // Action Navigator
         if (!context.mounted) return;
-        Navigator.of(context).pushReplacement(
-          PageRouteBuilder(
-            pageBuilder: (context, animation1, animation2) => HomePage(),
-            transitionDuration: Duration.zero,
-            reverseTransitionDuration: Duration.zero,
-          ),
-        );
+        Get.offAll(HomePage());
       } else {
         // Show error in here
         CustomSnackBar(
@@ -45,13 +40,7 @@ class LoginViewModel {
 
   //MARK: Route to Register
   Future<void> navigationToRegister(BuildContext context) async {
-    Navigator.of(context).pushReplacement(
-      PageRouteBuilder(
-        pageBuilder: (context, animation1, animation2) => RegisterPage(),
-        transitionDuration: Duration.zero,
-        reverseTransitionDuration: Duration.zero,
-      ),
-    );
+    Get.offAll(RegisterPage());
   }
 }
 
@@ -77,13 +66,7 @@ class RegisterViewModel {
 
         // Action Navigator
         if (!context.mounted) return;
-        Navigator.of(context).pushReplacement(
-          PageRouteBuilder(
-            pageBuilder: (context, animation1, animation2) => HomePage(),
-            transitionDuration: Duration.zero,
-            reverseTransitionDuration: Duration.zero,
-          ),
-        );
+        Get.offAll(HomePage);
       } else {
         // Show error in here
         CustomSnackBar(
@@ -96,12 +79,6 @@ class RegisterViewModel {
 
   //MARK: Navigation to Login
   Future<void> navigationToLogin(BuildContext context) async {
-    Navigator.of(context).pushReplacement(
-      PageRouteBuilder(
-        pageBuilder: (context, animation1, animation2) => LoginPage(),
-        transitionDuration: Duration.zero,
-        reverseTransitionDuration: Duration.zero,
-      ),
-    );
+    Get.offAll(LoginPage);
   }
 }

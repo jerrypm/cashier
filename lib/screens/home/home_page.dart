@@ -1,9 +1,10 @@
-import '../../models/product_type.dart';
-import '../../utilities/string_constant.dart';
-import '../../view_models/main_view_models.dart';
-import '../../widgets/grid_item.dart';
-import '../../utilities/data_constant.dart';
+import '../../../models/product_type.dart';
+import '../../../utilities/string_constant.dart';
+import '../../../view_models/main_view_models.dart';
+import '../../../widgets/grid_item.dart';
+import '../../../utilities/data_constant.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({
@@ -27,6 +28,12 @@ class HomePageState extends State<HomePage> {
           .where((element) =>
               element.title.toLowerCase().contains(value.toLowerCase()))
           .toList();
+    });
+  }
+
+  void _incrementValue() {
+    setState(() {
+      homeViewModel.totalOrders = 1;
     });
   }
 
@@ -78,7 +85,8 @@ class HomePageState extends State<HomePage> {
                     Expanded(
                       child: TextField(
                         onTap: () {
-                          print('data ${MediaQuery.of(context).size.width}');
+                          debugPrint('oy');
+                          _incrementValue();
                         },
                         onChanged: (value) => updateList(value),
                         decoration: InputDecoration(
@@ -125,14 +133,40 @@ class HomePageState extends State<HomePage> {
               bottom: 24,
               left: 16,
               right: 16,
-              child: Container(
-                height: 70.0,
-                decoration: const BoxDecoration(
-                  color: Colors.blueAccent,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(
-                      16.0,
+              child: InkWell(
+                onTap: () {
+                  // here
+                  debugPrint('print');
+                  Get.toNamed('/orders');
+                },
+                child: Container(
+                  padding: EdgeInsets.only(left: 20, right: 20),
+                  height: 70.0,
+                  decoration: const BoxDecoration(
+                    color: Color.fromARGB(255, 93, 93, 93),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(
+                        16.0,
+                      ),
                     ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        '2 Products',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      Expanded(
+                        child: Container(
+                          alignment: Alignment.centerRight,
+                          child: const Text(
+                            "\$14.00",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
