@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 //MARK: Alert Normal Dialog
 Future<void> showConfirmationDialog(
@@ -12,7 +13,7 @@ Future<void> showConfirmationDialog(
         actions: [
           ElevatedButton(
             onPressed: () {
-              Navigator.of(context).pop();
+              Get.back();
             },
             child: const Text('Close'),
           ),

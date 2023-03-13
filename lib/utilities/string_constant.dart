@@ -1,8 +1,8 @@
 class Texts {
   //MARK: Default String
   static String titleApp() => 'Casier Mate';
-  static String titleHome() => 'Home Page';
-  static String welcomeMsg() => 'My app';
+  static String titleHome() => 'Home';
+  static String welcomeMsg() => 'Cashier app';
 
   //MARK: Button
   static String signIn() => 'Sign In';
@@ -31,6 +31,7 @@ class Texts {
 
   //MARK: Keys
   static String isLoginKey() => 'isLogged';
+  static String isGrid() => 'isGrid';
   static String regEx() => r'^[a-z A-Z]+$';
   static String regExEmail() =>
       r'^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$';
@@ -43,4 +44,7 @@ class Texts {
   // Hardcoded login credentials
   static String emailLogin = 'admin@mail.com';
   static String passwordLogin = '12345678';
+
+  //MARK: Other
+  static String txtSearch() => 'Search...';
 }

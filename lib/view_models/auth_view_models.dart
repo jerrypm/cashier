@@ -1,14 +1,12 @@
-import 'dart:convert';
-import 'package:cashier_mate/models/user_model.dart';
-import 'package:cashier_mate/services/auth_service.dart';
-import 'package:cashier_mate/utilities/alert_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:cashier_mate/utilities/string_constant.dart';
-
-import 'package:cashier_mate/views/home_page.dart';
-import 'package:cashier_mate/views/register_page.dart';
-import 'package:cashier_mate/views/login_page.dart';
+import '../../services/app_service.dart';
+import '../../utilities/alert_dialog.dart';
+import '../../utilities/string_constant.dart';
+import '../screens/home/home_page.dart';
+import '../screens/auth/register_page.dart';
+import '../screens/auth/login_page.dart';
+import 'package:get/get.dart';
 
 /*
 
@@ -21,7 +19,7 @@ class LoginViewModel {
     String email,
     String password,
   ) async {
-    AuthService().signIn(email, password, (user, status) async {
+    AppService().signIn(email, password, (user, status) async {
       if (status) {
         // Save is_login
         SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -29,13 +27,7 @@ class LoginViewModel {
 
         // Action Navigator
         if (!context.mounted) return;
-        Navigator.of(context).pushReplacement(
-          PageRouteBuilder(
-            pageBuilder: (context, animation1, animation2) => HomePage(),
-            transitionDuration: Duration.zero,
-            reverseTransitionDuration: Duration.zero,
-          ),
-        );
+        Get.offAll(HomePage());
       } else {
         // Show error in here
         CustomSnackBar(
@@ -48,13 +40,7 @@ class LoginViewModel {
 
   //MARK: Route to Register
   Future<void> navigationToRegister(BuildContext context) async {
-    Navigator.of(context).pushReplacement(
-      PageRouteBuilder(
-        pageBuilder: (context, animation1, animation2) => RegisterPage(),
-        transitionDuration: Duration.zero,
-        reverseTransitionDuration: Duration.zero,
-      ),
-    );
+    Get.offAll(RegisterPage());
   }
 }
 
@@ -72,7 +58,7 @@ class RegisterViewModel {
     String email,
     String password,
   ) async {
-    AuthService().signUp(name, email, password, (user, status) async {
+    AppService().signUp(name, email, password, (user, status) async {
       if (status) {
         // Save is_login
         SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -80,13 +66,7 @@ class RegisterViewModel {
 
         // Action Navigator
         if (!context.mounted) return;
-        Navigator.of(context).pushReplacement(
-          PageRouteBuilder(
-            pageBuilder: (context, animation1, animation2) => HomePage(),
-            transitionDuration: Duration.zero,
-            reverseTransitionDuration: Duration.zero,
-          ),
-        );
+        Get.offAll(HomePage);
       } else {
         // Show error in here
         CustomSnackBar(
@@ -99,12 +79,6 @@ class RegisterViewModel {
 
   //MARK: Navigation to Login
   Future<void> navigationToLogin(BuildContext context) async {
-    Navigator.of(context).pushReplacement(
-      PageRouteBuilder(
-        pageBuilder: (context, animation1, animation2) => LoginPage(),
-        transitionDuration: Duration.zero,
-        reverseTransitionDuration: Duration.zero,
-      ),
-    );
+    Get.offAll(LoginPage);
   }
 }

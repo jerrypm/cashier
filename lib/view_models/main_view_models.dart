@@ -1,24 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:cashier_mate/services/auth_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:cashier_mate/utilities/string_constant.dart';
-import 'package:cashier_mate/views/login_page.dart';
+import '../../services/app_service.dart';
+import '../../utilities/string_constant.dart';
+import '../screens/auth/login_page.dart';
+import '../../models/product_type.dart';
+import 'package:get/get.dart';
 
 class HomeViewModel {
-  // save logout
+  ViewType viewType = ViewType.list;
 
+  //MARK: gride
+  // int crossAxisCount = 2;
+  // double aspectRatio = 1.4;
+
+  //MARK: list
+  int crossAxisCount = 1;
+  double aspectRatio = 4;
+
+  //MARK: Total Item
+  int totalOrders = 0;
+
+  //MARK: Save logout
   Future<void> navigationLogout(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove(Texts.isLoginKey());
 
     // navigation back to root login
     if (!context.mounted) return;
-    Navigator.of(context).pushReplacement(
-      PageRouteBuilder(
-        pageBuilder: (context, animation1, animation2) => LoginPage(),
-        transitionDuration: Duration.zero,
-        reverseTransitionDuration: Duration.zero,
-      ),
+    Get.offAll(LoginPage);
+  }
+
+  //MARK: Get List Items
+  void handleItemsList(BuildContext context) async {
+    AppService().menuList(
+      (items, status) async {
+        if (status) {
+          debugPrint('${items?.data?[1].imageUrl}success');
+        } else {
+          debugPrint('failed');
+        }
+      },
     );
   }
 }

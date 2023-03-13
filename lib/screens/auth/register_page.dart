@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cashier_mate/Utilities/string_constant.dart';
-import 'package:cashier_mate/view_models/auth_view_models.dart';
+import '../../../Utilities/string_constant.dart';
+import '../../../view_models/auth_view_models.dart';
 
 class RegisterPage extends StatelessWidget {
   final formKey = GlobalKey<FormState>(); //key for form
