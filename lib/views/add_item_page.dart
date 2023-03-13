@@ -10,6 +10,7 @@ class AddItemsPageState extends State<AddItemsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0, // for background transparent
         backgroundColor: Colors.white,
         foregroundColor: Colors.grey[900],
         title: const Text('Add Items'),

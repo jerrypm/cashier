@@ -14,24 +14,12 @@ class SettingsPage extends StatelessWidget {
         actions: const [],
       ),
       body: Column(
-        children: [
-          const SizedBox(
+        children: const [
+          SizedBox(
             height: 50.0,
-          ),
-          Container(
-            height: 100.0,
-            decoration: const BoxDecoration(
-              color: Colors.blue,
-              borderRadius: BorderRadius.all(
-                Radius.circular(
-                  16.0,
-                ),
-              ),
-            ),
           ),
         ],
       ),
-      //batas cuy
     );
   }
 }

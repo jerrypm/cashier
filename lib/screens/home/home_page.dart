@@ -39,7 +39,9 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    //MARK: Request API Get Items
     homeViewModel.handleItemsList(context);
+
     return Scaffold(
       //MARK: Main background
       backgroundColor: Colors.white.withOpacity(0.9),
@@ -85,8 +87,8 @@ class HomePageState extends State<HomePage> {
                     Expanded(
                       child: TextField(
                         onTap: () {
-                          debugPrint('oy');
-                          _incrementValue();
+                          debugPrint('oy'); // delete this ( just example)
+                          _incrementValue(); // change when add items
                         },
                         onChanged: (value) => updateList(value),
                         decoration: InputDecoration(
@@ -112,7 +114,7 @@ class HomePageState extends State<HomePage> {
                   padding: EdgeInsets.only(
                       bottom: (homeViewModel.totalOrders > 0) ? 80 : 0),
                   child: Container(
-                    margin: const EdgeInsets.all(12),
+                    margin: const EdgeInsets.all(4),
                     child: GridView.count(
                       crossAxisCount: homeViewModel.crossAxisCount,
                       childAspectRatio: homeViewModel.aspectRatio,

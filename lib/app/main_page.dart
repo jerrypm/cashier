@@ -58,7 +58,11 @@ class MainPageState extends State<MainPage> {
             label: 'Manuals',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/icons/add_menu_flutter.png'),
+            icon: Image.asset(
+              'assets/icons/add_menu_flutter.png',
+              height: 40,
+              width: 40,
+            ),
           ),
           const BottomNavigationBarItem(
             icon: Icon(Icons.notes_outlined),

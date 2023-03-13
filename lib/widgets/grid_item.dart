@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../models/product_type.dart';
 
@@ -7,55 +8,90 @@ GridTile getGridItem(ItemArrayList item, ViewType viewType) {
     child: (viewType == ViewType.list)
         //MARK: List Data
         ? Container(
-            margin: const EdgeInsets.all(10),
-            child: Row(
-              children: [
-                ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.network(item.imageUrl)),
-                const SizedBox(width: 5),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+            margin: const EdgeInsets.all(2),
+            child: ListTile(
+              leading: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network(item.imageUrl),
+              ),
+              title: Text(
+                item.title,
+                style: const TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              subtitle: Text(
+                item.price,
+                style: const TextStyle(
+                  fontSize: 12,
+                ),
+              ),
+              trailing: Container(
+                width: 90,
+                height: 40,
+                child: Row(
                   children: [
-                    Text(item.title,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        )),
-                    Text(item.price,
-                        style: const TextStyle(
-                          fontSize: 15,
-                        )),
+                    //Icon Minus
+                    Container(
+                      padding: EdgeInsets.all(2),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(
+                            16.0,
+                          ),
+                        ),
+                        border: Border.all(color: Colors.blueAccent),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.2),
+                            spreadRadius: 1,
+                            blurRadius: 10,
+                          ),
+                        ],
+                      ),
+                      child: const Icon(
+                        CupertinoIcons.minus,
+                        size: 18,
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(left: 8, right: 8),
+                      child: Text("0"),
+                    ),
+
+                    //Icon Minus
+                    Container(
+                      padding: const EdgeInsets.all(2),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(
+                            16.0,
+                          ),
+                        ),
+                        border: Border.all(color: Colors.blueAccent),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.2),
+                            spreadRadius: 1,
+                            blurRadius: 10,
+                          ),
+                        ],
+                      ),
+                      child: const Icon(
+                        CupertinoIcons.plus,
+                        size: 18,
+                      ),
+                    ),
                   ],
                 ),
-                const Expanded(
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: 20.0,
-                    child: Text('-', textAlign: TextAlign.right),
-                  ),
-                ),
-                const Expanded(
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: 20.0,
-                    child: Text('0', textAlign: TextAlign.right),
-                  ),
-                ),
-                const Expanded(
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: 20.0,
-                    child: Text('+', textAlign: TextAlign.right),
-                  ),
-                ),
-              ],
+              ),
             ),
           )
         //MARK: Grid Data
         : Container(
-            // color: Colors.amber,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -77,7 +113,7 @@ GridTile getGridItem(ItemArrayList item, ViewType viewType) {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 5)
+                const SizedBox(height: 5),
               ],
             ),
           ),
