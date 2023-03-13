@@ -87,8 +87,8 @@ class HomePageState extends State<HomePage> {
                     Expanded(
                       child: TextField(
                         onTap: () {
-                          debugPrint('oy'); // delete this ( just example)
-                          _incrementValue(); // change when add items
+                          // debugPrint('oy'); // delete this ( just example)
+                          // _incrementValue(); // change when add items
                         },
                         onChanged: (value) => updateList(value),
                         decoration: InputDecoration(

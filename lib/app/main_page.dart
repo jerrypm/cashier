@@ -49,12 +49,36 @@ class MainPageState extends State<MainPage> {
         currentIndex: selectedIndex,
         onTap: onItemTapped,
         items: <BottomNavigationBarItem>[
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.list_alt),
+          BottomNavigationBarItem(
+            icon: selectedIndex == 0
+                ? Image.asset(
+                    'assets/icons/home.png',
+                    height: 25,
+                    width: 25,
+                    color: Colors.blue,
+                  )
+                : Image.asset(
+                    'assets/icons/home.png',
+                    height: 25,
+                    width: 25,
+                    color: Colors.grey,
+                  ),
             label: 'Home',
           ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.library_books),
+          BottomNavigationBarItem(
+            icon: selectedIndex == 1
+                ? Image.asset(
+                    'assets/icons/manual.png',
+                    height: 25,
+                    width: 25,
+                    color: Colors.blue,
+                  )
+                : Image.asset(
+                    'assets/icons/manual.png',
+                    height: 25,
+                    width: 25,
+                    color: Colors.grey,
+                  ),
             label: 'Manuals',
           ),
           BottomNavigationBarItem(
@@ -64,12 +88,36 @@ class MainPageState extends State<MainPage> {
               width: 40,
             ),
           ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.notes_outlined),
+          BottomNavigationBarItem(
+            icon: selectedIndex == 3
+                ? Image.asset(
+                    'assets/icons/orders.png',
+                    height: 25,
+                    width: 25,
+                    color: Colors.blue,
+                  )
+                : Image.asset(
+                    'assets/icons/orders.png',
+                    height: 25,
+                    width: 25,
+                    color: Colors.grey,
+                  ),
             label: 'Order',
           ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
+          BottomNavigationBarItem(
+            icon: selectedIndex == 4
+                ? Image.asset(
+                    'assets/icons/settings.png',
+                    height: 25,
+                    width: 25,
+                    color: Colors.blue,
+                  )
+                : Image.asset(
+                    'assets/icons/settings.png',
+                    height: 25,
+                    width: 25,
+                    color: Colors.grey,
+                  ),
             label: 'Settings',
           ),
         ],
