@@ -25,7 +25,7 @@ dependencies:
 flutter_icons: #<-- asset add in here
   android: "launcher_icon"
   ios: true
-  image_path: "assets/icons/Icon_cashier_app.png"
+  image_path: "assets/icons/cashier_app.png"
 
 dev_dependencies:
   flutter_test:
