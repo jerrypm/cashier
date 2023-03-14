@@ -1,9 +1,8 @@
 import '../../view_models/main_view_models.dart';
-import '../../screens/home/home_page.dart';
-import '../../screens/manuals/manual_page.dart';
-import '../../screens/order/order_page.dart';
-import '../../screens/settings/settings_page.dart';
-import '../../views/add_item_page.dart';
+import '../screens/home/home_screen.dart';
+import '../screens/history/history_screen.dart';
+import '../screens/order/order_screen.dart';
+import '../screens/settings/settings_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,22 +18,16 @@ class MainPageState extends State<MainPage> {
 
   //MARK: List Items Bottom Bar
   final List<Widget> children = [
-    const HomePage(),
-    const ManualPage(),
-    AddItemsPage(),
-    const OrderPage(),
-    const SettingsPage(),
+    const HomeScreen(),
+    const HistoryScreen(),
+    OrderScreen(),
+    const SettingsScreen(),
   ];
 
   //MARK: Action Tap Index Bottom Nav bar
   void onItemTapped(int index) {
     setState(() {
-      if (index == 2) {
-        Get.to(AddItemsPage(), fullscreenDialog: true);
-        debugPrint('$index yoo loo');
-      } else {
-        selectedIndex = index;
-      }
+      selectedIndex = index;
     });
   }
 
@@ -48,6 +41,7 @@ class MainPageState extends State<MainPage> {
       bottomNavigationBar: CupertinoTabBar(
         currentIndex: selectedIndex,
         onTap: onItemTapped,
+        height: 60,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: selectedIndex == 0
@@ -68,28 +62,21 @@ class MainPageState extends State<MainPage> {
           BottomNavigationBarItem(
             icon: selectedIndex == 1
                 ? Image.asset(
-                    'assets/icons/manual.png',
+                    'assets/icons/history.png',
                     height: 25,
                     width: 25,
                     color: Colors.blue,
                   )
                 : Image.asset(
-                    'assets/icons/manual.png',
+                    'assets/icons/history.png',
                     height: 25,
                     width: 25,
                     color: Colors.grey,
                   ),
-            label: 'Manuals',
+            label: 'history',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/icons/add_menu_flutter.png',
-              height: 40,
-              width: 40,
-            ),
-          ),
-          BottomNavigationBarItem(
-            icon: selectedIndex == 3
+            icon: selectedIndex == 2
                 ? Image.asset(
                     'assets/icons/orders.png',
                     height: 25,
@@ -105,7 +92,7 @@ class MainPageState extends State<MainPage> {
             label: 'Order',
           ),
           BottomNavigationBarItem(
-            icon: selectedIndex == 4
+            icon: selectedIndex == 3
                 ? Image.asset(
                     'assets/icons/settings.png',
                     height: 25,

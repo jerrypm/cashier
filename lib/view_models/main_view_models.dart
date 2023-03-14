@@ -7,15 +7,15 @@ import '../../models/product_type.dart';
 import 'package:get/get.dart';
 
 class HomeViewModel {
-  ViewType viewType = ViewType.list;
-
-  //MARK: gride
-  // int crossAxisCount = 2;
-  // double aspectRatio = 1.4;
+  //MARK: grid
+  ViewType viewType = ViewType.grid;
+  int crossAxisCount = 2;
+  double aspectRatio = 0.9;
+  double spacing = 16;
 
   //MARK: list
-  int crossAxisCount = 1;
-  double aspectRatio = 4;
+  // int crossAxisCount = 1;
+  // double aspectRatio = 4;
 
   //MARK: Total Item
   int totalOrders = 0;

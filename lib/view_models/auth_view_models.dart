@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../services/app_service.dart';
 import '../../utilities/alert_dialog.dart';
 import '../../utilities/string_constant.dart';
-import '../screens/home/home_page.dart';
+import '../screens/home/home_screen.dart';
 import '../screens/auth/register_page.dart';
 import '../screens/auth/login_page.dart';
 import 'package:get/get.dart';
@@ -27,7 +27,7 @@ class LoginViewModel {
 
         // Action Navigator
         if (!context.mounted) return;
-        Get.offAll(HomePage());
+        Get.offAll(HomeScreen());
       } else {
         // Show error in here
         CustomSnackBar(
@@ -66,7 +66,7 @@ class RegisterViewModel {
 
         // Action Navigator
         if (!context.mounted) return;
-        Get.offAll(HomePage);
+        Get.offAll(HomeScreen);
       } else {
         // Show error in here
         CustomSnackBar(

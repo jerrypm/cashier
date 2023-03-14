@@ -53,6 +53,11 @@ class AppService extends ChangeNotifier {
     }
   }
 
+  void discover(Function(String) completion) async {
+    final service = AppService();
+    const endpoint = AppEndpoint.register;
+  }
+
   //MARK: Register
   void signUp(String name, String email, String password,
       Function(UserResponse?, bool) completion) async {

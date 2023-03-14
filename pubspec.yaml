@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  carousel_slider: ^4.2.1
   cupertino_icons: ^1.0.2
   flutter_launcher_icons: ^0.11.0
   http: ^0.13.5
@@ -37,8 +38,4 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/icons/add_menu_flutter.png
-    - assets/icons/home.png
-    - assets/icons/orders.png
-    - assets/icons/manual.png
-    - assets/icons/settings.png
+    - assets/icons/

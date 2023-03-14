@@ -1,6 +1,9 @@
 class Texts {
   //MARK: Default String
-  static String titleApp() => 'Casier Mate';
+  static String titleApp() => 'Cashier Mate';
+  static String titleAppHome() => 'Cashier';
+  static String titleMenu() => 'Menu';
+
   static String titleHome() => 'Home';
   static String welcomeMsg() => 'Cashier app';
 
