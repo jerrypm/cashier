@@ -19,23 +19,46 @@ class LoginViewModel {
     String email,
     String password,
   ) async {
-    AppService().signIn(email, password, (user, status) async {
-      if (status) {
-        // Save is_login
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        await prefs.setBool(Texts.isLoginKey(), true);
+    if (email.isEmpty) {
+      CustomSnackBar(
+        context,
+        const Text("Email cannot be empty."),
+      );
+    } else if (password.isEmpty) {
+      CustomSnackBar(
+        context,
+        const Text("Password cannot be empty."),
+      );
+    } else {
+      AppService().signIn(
+        email,
+        password,
+        (user, status) async {
+          if (status) {
+            // Save is_login
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            await prefs.setBool(Texts.isLoginKey(), true);
 
-        // Action Navigator
-        if (!context.mounted) return;
-        Get.offAll(HomeScreen());
-      } else {
-        // Show error in here
-        CustomSnackBar(
-          context,
-          const Text("Email tidak terdaftar"),
-        );
-      }
-    });
+            // Action Navigator
+            if (!context.mounted) return;
+            Get.offAll(HomeScreen());
+          } else {
+            // Show error in here
+            if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(email)) {
+              CustomSnackBar(
+                context,
+                const Text("Invalid Email Format"),
+              );
+            } else {
+              CustomSnackBar(
+                context,
+                const Text("Unregistered Email Address"),
+              );
+            }
+          }
+        },
+      );
+    }
   }
 
   //MARK: Route to Register

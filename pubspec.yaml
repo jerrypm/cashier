@@ -22,6 +22,12 @@ dependencies:
   blue_thermal_printer: ^1.2.3 #<-- for printer just android
   get: ^4.6.5
 
+  firebase_core: ^2.7.1
+  firebase_auth: ^4.2.10
+  google_sign_in: ^6.0.2
+  # flutter_facebook_auth: ^5.0.8
+  provider: ^6.0.5
+
 flutter_icons: #<-- asset add in here
   android: "launcher_icon"
   ios: true

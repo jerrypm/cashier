@@ -70,6 +70,15 @@ class LoginPage extends StatelessWidget {
                   ),
                   // floatingLabelStyle: TextStyle(color: Colors.purple.shade500),
                 ),
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Email cannot be empty.';
+                  }
+                  if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                    return 'Invalid Email Format';
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 16.0),
 
