@@ -1,3 +1,6 @@
+import 'package:cashier_mate/utilities/color_custom.dart';
+import 'package:cashier_mate/utilities/string_constant.dart';
+
 import '../../view_models/main_view_models.dart';
 import '../screens/home/home_screen.dart';
 import '../screens/history/history_screen.dart';
@@ -5,7 +8,6 @@ import '../screens/order/order_screen.dart';
 import '../screens/settings/settings_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -21,7 +23,7 @@ class MainPageState extends State<MainPage> {
     const HomeScreen(),
     const HistoryScreen(),
     OrderScreen(),
-    const SettingsScreen(),
+    SettingsScreen(),
   ];
 
   //MARK: Action Tap Index Bottom Nav bar
@@ -46,68 +48,69 @@ class MainPageState extends State<MainPage> {
           BottomNavigationBarItem(
             icon: selectedIndex == 0
                 ? Image.asset(
-                    'assets/icons/home.png',
+                    Texts.homeIcon(),
                     height: 25,
                     width: 25,
-                    color: Colors.blue,
+                    color: AppColors.darkBlue,
                   )
                 : Image.asset(
-                    'assets/icons/home.png',
+                    Texts.homeIcon(),
                     height: 25,
                     width: 25,
                     color: Colors.grey,
                   ),
-            label: 'Home',
+            label: Texts.titleHome(),
           ),
           BottomNavigationBarItem(
             icon: selectedIndex == 1
                 ? Image.asset(
-                    'assets/icons/history.png',
+                    Texts.historyIcon(),
                     height: 25,
                     width: 25,
-                    color: Colors.blue,
+                    color: AppColors.darkBlue,
                   )
                 : Image.asset(
-                    'assets/icons/history.png',
+                    Texts.historyIcon(),
                     height: 25,
                     width: 25,
                     color: Colors.grey,
                   ),
-            label: 'history',
+            label: Texts.titleHistory(),
           ),
           BottomNavigationBarItem(
             icon: selectedIndex == 2
                 ? Image.asset(
-                    'assets/icons/orders.png',
+                    Texts.orderIcon(),
                     height: 25,
                     width: 25,
-                    color: Colors.blue,
+                    color: AppColors.darkBlue,
                   )
                 : Image.asset(
-                    'assets/icons/orders.png',
+                    Texts.orderIcon(),
                     height: 25,
                     width: 25,
                     color: Colors.grey,
                   ),
-            label: 'Order',
+            label: Texts.titleOrders(),
           ),
           BottomNavigationBarItem(
             icon: selectedIndex == 3
                 ? Image.asset(
-                    'assets/icons/settings.png',
+                    Texts.settingIcon(),
                     height: 25,
                     width: 25,
-                    color: Colors.blue,
+                    color: AppColors.darkBlue,
                   )
                 : Image.asset(
-                    'assets/icons/settings.png',
+                    Texts.settingIcon(),
                     height: 25,
                     width: 25,
                     color: Colors.grey,
                   ),
-            label: 'Settings',
+            label: Texts.titleSettings(),
           ),
         ],
+        activeColor: AppColors.darkBlue,
       ),
     );
   }

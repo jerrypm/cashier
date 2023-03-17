@@ -1,3 +1,5 @@
+import 'package:cashier_mate/utilities/color_custom.dart';
+
 import '../../../models/product_type.dart';
 import '../../../utilities/string_constant.dart';
 import '../../../view_models/main_view_models.dart';
@@ -44,7 +46,7 @@ class HomePageState extends State<HomeScreen> {
 
     return Scaffold(
       //MARK: Main background
-      backgroundColor: Colors.white.withOpacity(0.9),
+      backgroundColor: AppColors.backgroundColor,
 
       //MARK: Body
       body: SafeArea(
@@ -63,7 +65,7 @@ class HomePageState extends State<HomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Image.asset(
-                            'assets/icons/topIcon.png',
+                            Texts.iconTopHome(),
                             height: 25,
                             width: 25,
                             // color: Colors.blue,
@@ -72,7 +74,7 @@ class HomePageState extends State<HomeScreen> {
                           Text(
                             Texts.titleAppHome(),
                             style: const TextStyle(
-                              color: Colors.blueGrey,
+                              color: AppColors.darkBlue,
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
                             ),
@@ -109,7 +111,7 @@ class HomePageState extends State<HomeScreen> {
                           onChanged: (value) => updateList(value),
                           decoration: InputDecoration(
                             filled: true,
-                            fillColor: Color.fromARGB(255, 255, 255, 255),
+                            fillColor: Colors.white,
                             hintText: Texts.txtSearch(),
                             border: const OutlineInputBorder(
                               borderRadius:
@@ -182,7 +184,7 @@ class HomePageState extends State<HomeScreen> {
                     padding: const EdgeInsets.only(left: 20, right: 20),
                     height: 70.0,
                     decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 93, 93, 93),
+                      color: AppColors.davyGrey,
                       borderRadius: BorderRadius.all(
                         Radius.circular(16.0),
                       ),

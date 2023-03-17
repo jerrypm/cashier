@@ -5,6 +5,9 @@ class Texts {
   static String titleMenu() => 'Menu';
 
   static String titleHome() => 'Home';
+  static String titleHistory() => 'History';
+  static String titleOrders() => 'Orders';
+  static String titleSettings() => 'Settings';
   static String welcomeMsg() => 'Cashier app';
 
   //MARK: Button
@@ -23,14 +26,21 @@ class Texts {
   static String valuePass() => 'value pass';
   static String valiEmail() => 'Please enter your email';
   static String valiPassword() => 'Please enter your password';
-  static String txtTitleFirstLogin() => 'Welcome to';
-  static String txtTitleSecLogin() => 'the Mobile POS Login!';
-  static String txtTitleSecRegister() => 'the Mobile POS Register!';
-  static String txtDescLogin() => 'Sign in to Access Your Mobile Point of Sale';
+  static String txtTitleFirstLogin() => 'Welcome Back';
+  static String txtTitleSecLogin() => 'Boost sales with our efficient POS app.';
+  static String txtTitleSecRegister() => 'Get On Board!';
   static String txtDescRegister() =>
-      'Sign Up to Access Your Mobile Point of Sale';
+      'Sign Up to access your mobile Point of Sale';
   static String txtSwitchRegister() => 'Don\'t have an account? Sign up';
   static String txtSwitchLogin() => 'I already have an account? Sign In';
+
+  //MARK: Image Assets
+  static String onBoardAuthIcon() => 'assets/icons/onboarding.png';
+  static String homeIcon() => 'assets/icons/home.png';
+  static String historyIcon() => 'assets/icons/history.png';
+  static String orderIcon() => 'assets/icons/orders.png';
+  static String settingIcon() => 'assets/icons/settings.png';
+  static String iconTopHome() => 'assets/icons/topIcon.png';
 
   //MARK: Keys
   static String isLoginKey() => 'isLogged';
@@ -41,7 +51,8 @@ class Texts {
   static String regExPass() => r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,}$';
 
   //MARK: URL
-  static String baseUrl() => 'http://fancode.cloud/api/v1/';
+  static String baseUrl() => 'http://restapi.adequateshop.com/api/';
+
   static String baseUrlLocal() => 'http://0.0.0.0:3003/';
 
   // Hardcoded login credentials

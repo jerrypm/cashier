@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import '../../view_models/main_view_models.dart';
 
 class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({super.key});
+  SettingsScreen({super.key});
+
+  final HomeViewModel viewModel = HomeViewModel();
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +17,20 @@ class SettingsScreen extends StatelessWidget {
         actions: const [],
       ),
       body: Column(
-        children: const [
-          SizedBox(
+        children: [
+          const SizedBox(
             height: 50.0,
+          ),
+          Center(
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blueGrey,
+              ),
+              onPressed: () {
+                viewModel.navigationLogout(context);
+              },
+              child: const Text("logout"),
+            ),
           ),
         ],
       ),

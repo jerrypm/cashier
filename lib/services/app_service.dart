@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import '../../Utilities/string_constant.dart';
-import '../../models/user_model.dart';
+import '../../models/auth_model.dart';
 import '../../models/menu_model.dart';
 import 'package:http/http.dart' as http;
+
 // import 'package:connectivity_plus/connectivity_plus.dart';
 
 enum AppEndpoint {
@@ -19,9 +20,9 @@ class AppService extends ChangeNotifier {
   String getEndpointUrl(AppEndpoint endpoint) {
     switch (endpoint) {
       case AppEndpoint.login:
-        return '${Texts.baseUrl()}auth/login';
+        return '${Texts.baseUrl()}authaccount/login';
       case AppEndpoint.register:
-        return '${Texts.baseUrl()}auth/register';
+        return '${Texts.baseUrl()}authaccount/registration';
       case AppEndpoint.profile:
         return '${Texts.baseUrl()}users/profile';
       case AppEndpoint.logout:
@@ -33,7 +34,7 @@ class AppService extends ChangeNotifier {
 
   //MARK: Login
   void signIn(String email, String password,
-      Function(UserResponse?, bool) completion) async {
+      Function(AuthModel?, bool) completion) async {
     final authService = AppService();
     const endpoint = AppEndpoint.login;
     final urlString = authService.getEndpointUrl(endpoint);
@@ -46,21 +47,16 @@ class AppService extends ChangeNotifier {
     );
 
     if (response.statusCode == 200) {
-      UserResponse user = UserResponse.fromJson(json.decode(response.body));
+      AuthModel user = AuthModel.fromJson(json.decode(response.body));
       completion(user, true);
     } else {
       completion(null, false);
     }
   }
 
-  void discover(Function(String) completion) async {
-    final service = AppService();
-    const endpoint = AppEndpoint.register;
-  }
-
   //MARK: Register
   void signUp(String name, String email, String password,
-      Function(UserResponse?, bool) completion) async {
+      Function(AuthModel?, bool) completion) async {
     final authService = AppService();
     const endpoint = AppEndpoint.register;
     final urlString = authService.getEndpointUrl(endpoint);
@@ -77,8 +73,8 @@ class AppService extends ChangeNotifier {
     );
 
     if (response.statusCode == 200) {
-      UserResponse user =
-          UserResponse.fromJson(json.decode(response.body)); // passing model
+      AuthModel user =
+          AuthModel.fromJson(json.decode(response.body)); // passing model
       completion(user, true);
     } else {
       completion(null, false);

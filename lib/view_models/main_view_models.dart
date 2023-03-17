@@ -27,7 +27,7 @@ class HomeViewModel {
 
     // navigation back to root login
     if (!context.mounted) return;
-    Get.offAll(LoginPage);
+    Get.offAll(() => loginScreen());
   }
 
   //MARK: Get List Items
