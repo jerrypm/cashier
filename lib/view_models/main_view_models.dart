@@ -16,10 +16,6 @@ class HomeViewModel extends GetxController {
 
   final resultFoods = <DataSubModel>[].obs;
 
-  //MARK: list
-  // int crossAxisCount = 1;
-  // double aspectRatio = 4;
-
   //MARK: Total Item
   int totalOrders = 0;
 

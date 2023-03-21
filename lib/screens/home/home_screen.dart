@@ -1,12 +1,11 @@
 import 'package:cashier_mate/utilities/color_custom.dart';
+import 'package:cashier_mate/utilities/items_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../models/product_type.dart';
 import '../../../utilities/string_constant.dart';
 import '../../../view_models/main_view_models.dart';
 import '../../../widgets/grid_item.dart';
-import '../../../utilities/data_constant.dart';
 import '../../models/menu_model.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -20,15 +19,14 @@ class HomeScreen extends StatefulWidget {
 
 class HomePageState extends State<HomeScreen> {
   final HomeViewModel homeViewModel = Get.put(HomeViewModel());
-  List<ItemArrayList> itemList = listData(); // controller
-  List<ItemArrayList> dispalylist = List.from(listData()); // screen
+  List<DataSubModel> dispalylist = <DataSubModel>[].obs;
 
   void updateList(String value) {
     //MARK: This function will filter the list
     setState(() {
-      dispalylist = itemList
+      dispalylist = homeViewModel.resultFoods
           .where((element) =>
-              element.title.toLowerCase().contains(value.toLowerCase()))
+              element.title!.toLowerCase().contains(value.toLowerCase()))
           .toList(); // array
     });
   }
@@ -95,73 +93,113 @@ class HomePageState extends State<HomeScreen> {
                     ],
                   ),
                 ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        //MARK: Search
+                        Container(
+                          height: 80,
+                          padding: const EdgeInsets.all(16),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: TextField(
+                                  onChanged: (value) =>
+                                      updateList(value), // HERE FIXING
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    hintText: Texts.txtSearch(),
+                                    border: const OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(25.0)),
+                                    ),
+                                    prefixIcon: const Icon(Icons.search),
+                                    prefixIconColor: Colors.grey,
+                                    contentPadding: const EdgeInsets.all(10),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
 
-                //MARK: Search
-                Container(
-                  height: 80,
-                  padding: const EdgeInsets.all(16),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: TextField(
-                          onChanged: (value) => updateList(value),
-                          decoration: InputDecoration(
-                            filled: true,
-                            fillColor: Colors.white,
-                            hintText: Texts.txtSearch(),
-                            border: const OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(25.0)),
+                        // MARK: Top Tab items
+                        Container(
+                          padding: const EdgeInsets.only(
+                            left: 20,
+                            right: 20,
+                            bottom: 16,
+                            top: 16,
+                          ),
+                          child: Row(
+                            children: [
+                              TabsItemsbar().tabs[0],
+                              const Spacer(),
+                              TabsItemsbar().tabs[1],
+                              const Spacer(),
+                              TabsItemsbar().tabs[2],
+                              const Spacer(),
+                              TabsItemsbar().tabs[3],
+                              const Spacer(),
+                              TabsItemsbar().tabs[4],
+                            ],
+                          ),
+                        ),
+
+                        //MARK: Head Section Menu
+                        Padding(
+                          padding: const EdgeInsets.only(left: 25, bottom: 8),
+                          child: Row(
+                            children: [
+                              Text(
+                                Texts.titleMenu(),
+                                style: TextStyle(
+                                  color: Colors.blueGrey[700],
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        //MARK: Items
+                        Obx(
+                          () => Container(
+                            padding: EdgeInsets.only(
+                                bottom:
+                                    (homeViewModel.totalOrders > 0) ? 80 : 0),
+                            child: Container(
+                              margin: const EdgeInsets.only(
+                                  left: 25, right: 25, top: 4, bottom: 8),
+                              child: GridView.count(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                mainAxisSpacing: homeViewModel.spacing,
+                                crossAxisSpacing: homeViewModel.spacing,
+                                crossAxisCount: homeViewModel.crossAxisCount,
+                                childAspectRatio: homeViewModel.aspectRatio,
+                                children: (dispalylist.isEmpty)
+                                    ? homeViewModel.resultFoods
+                                        .map((DataSubModel item) {
+                                        return getGridItem(
+                                            item, homeViewModel.viewType);
+                                      }).toList()
+                                    : dispalylist.map((DataSubModel item) {
+                                        return getGridItem(
+                                            item, homeViewModel.viewType);
+                                      }).toList(),
+                              ),
                             ),
-                            prefixIcon: const Icon(Icons.search),
-                            prefixIconColor: Colors.grey,
-                            contentPadding: const EdgeInsets.all(10),
                           ),
-                        ),
-                      ),
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
-
-                //MARK: Head Section Menu
-                Padding(
-                  padding: const EdgeInsets.only(left: 25, bottom: 8),
-                  child: Row(
-                    children: [
-                      Text(
-                        Texts.titleMenu(),
-                        style: TextStyle(
-                          color: Colors.blueGrey[700],
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                //MARK: Items
-                Obx(() => Expanded(
-                      child: Container(
-                        padding: EdgeInsets.only(
-                            bottom: (homeViewModel.totalOrders > 0) ? 80 : 0),
-                        child: Container(
-                          margin: const EdgeInsets.only(
-                              left: 25, right: 25, top: 4, bottom: 8),
-                          child: GridView.count(
-                            mainAxisSpacing: homeViewModel.spacing,
-                            crossAxisSpacing: homeViewModel.spacing,
-                            crossAxisCount: homeViewModel.crossAxisCount,
-                            childAspectRatio: homeViewModel.aspectRatio,
-                            children: homeViewModel.resultFoods
-                                .map((DataSubModel item) {
-                              return getGridItem(item, homeViewModel.viewType);
-                            }).toList(),
-                          ),
-                        ),
-                      ),
-                    ))
               ],
             ),
           ],
