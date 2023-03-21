@@ -2,6 +2,9 @@
 
 A new Flutter project.
 
+<img width="473" alt="Screen Shot 2023-03-21 at 12 48 12" src="https://user-images.githubusercontent.com/15967964/226527874-6fe1c813-f803-42b9-9aa2-8e9b58db7864.png">
+
+
 ## Features
 - Home Page
 - Add Menu
