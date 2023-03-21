@@ -9,10 +9,15 @@ enum ViewType {
 class ItemArrayList {
   final String imageUrl;
   final String title;
+  final String desc;
   final String price;
 
-  ItemArrayList(
-      {required this.imageUrl, required this.title, required this.price});
+  ItemArrayList({
+    required this.imageUrl,
+    required this.title,
+    required this.desc,
+    required this.price,
+  });
 }
 
 // Function for check login

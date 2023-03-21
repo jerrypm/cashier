@@ -9,14 +9,14 @@ class MenuModel {
     if (json['data'] != null) {
       data = <DataSubModel>[];
       json['data'].forEach((v) {
-        data!.add(new DataSubModel.fromJson(v));
+        data!.add(DataSubModel.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['message'] = this.message;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['message'] = message;
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
@@ -26,22 +26,30 @@ class MenuModel {
 
 class DataSubModel {
   String? imageUrl;
+  String? desc;
   String? title;
-  String? price;
+  double? price;
 
-  DataSubModel({this.imageUrl, this.title, this.price});
+  DataSubModel({
+    this.imageUrl,
+    this.title,
+    this.desc,
+    this.price,
+  });
 
   DataSubModel.fromJson(Map<String, dynamic> json) {
     imageUrl = json['imageUrl'];
     title = json['title'];
+    desc = json['desc'];
     price = json['price'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['imageUrl'] = this.imageUrl;
-    data['title'] = this.title;
-    data['price'] = this.price;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['imageUrl'] = imageUrl;
+    data['title'] = title;
+    data['desc'] = desc;
+    data['price'] = price;
     return data;
   }
 }

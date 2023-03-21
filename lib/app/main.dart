@@ -24,9 +24,9 @@ class MyApp extends StatelessWidget {
         future: checkLogin(),
         builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
           if (snapshot.hasData && snapshot.data!) {
-            return MainPage();
+            return const MainPage();
           } else {
-            return loginScreen();
+            return const loginScreen();
           }
         },
       ),

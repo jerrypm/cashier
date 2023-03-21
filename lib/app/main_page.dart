@@ -10,6 +10,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
+  const MainPage({super.key});
+
   @override
   MainPageState createState() => MainPageState();
 }
@@ -22,8 +24,8 @@ class MainPageState extends State<MainPage> {
   final List<Widget> children = [
     const HomeScreen(),
     const HistoryScreen(),
-    OrderScreen(),
-    SettingsScreen(),
+    const OrderScreen(),
+    const SettingsScreen(),
   ];
 
   //MARK: Action Tap Index Bottom Nav bar

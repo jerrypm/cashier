@@ -1,4 +1,4 @@
-import 'dart:ffi';
+// ignore_for_file: camel_case_types
 
 import '../../utilities/color_custom.dart';
 import 'package:flutter/material.dart';

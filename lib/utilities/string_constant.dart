@@ -42,6 +42,9 @@ class Texts {
   static String settingIcon() => 'assets/icons/settings.png';
   static String iconTopHome() => 'assets/icons/topIcon.png';
 
+  static String minusIcon() => 'assets/icons/minus-circle.png';
+  static String plusIcon() => 'assets/icons/plus-circle.png';
+
   //MARK: Keys
   static String isLoginKey() => 'isLogged';
   static String isGrid() => 'isGrid';
@@ -61,4 +64,7 @@ class Texts {
 
   //MARK: Other
   static String txtSearch() => 'Search...';
+  static String txtQuantity() => 'Quantity';
+  static String txtNote() => 'Note';
+  static String txtCart() => 'Add to Cart';
 }

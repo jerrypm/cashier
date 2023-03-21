@@ -3,9 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../services/app_service.dart';
 import '../../utilities/alert_dialog.dart';
 import '../../utilities/string_constant.dart';
-import '../screens/home/home_screen.dart';
 import '../screens/auth/register_page.dart';
-import '../screens/auth/login_page.dart';
 import '../app/main_page.dart';
 import 'package:get/get.dart';
 
@@ -42,7 +40,7 @@ class LoginViewModel {
 
             // Action Navigator
             if (!context.mounted) return;
-            Get.offAll(MainPage());
+            Get.offAll(const MainPage());
           } else {
             // Show error in here
             if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(email)) {
@@ -64,7 +62,7 @@ class LoginViewModel {
 
   //MARK: Route to Register
   Future<void> navigationToRegister(BuildContext context) async {
-    Get.to(RegisterScreen());
+    Get.to(const RegisterScreen());
   }
 }
 
@@ -90,7 +88,7 @@ class RegisterViewModel {
 
         // Action Navigator
         if (!context.mounted) return;
-        Get.offAll(MainPage());
+        Get.offAll(const MainPage());
       } else {
         // Show error in here
         CustomSnackBar(

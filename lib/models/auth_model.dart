@@ -10,13 +10,13 @@ class AuthModel {
   AuthModel.fromJson(Map<String, dynamic> json) {
     code = json['code'];
     message = json['message'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['code'] = this.code;
-    data['message'] = this.message;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['code'] = code;
+    data['message'] = message;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
@@ -40,11 +40,11 @@ class Data {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['Id'] = this.id;
-    data['Name'] = this.name;
-    data['Email'] = this.email;
-    data['Token'] = this.token;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['Id'] = id;
+    data['Name'] = name;
+    data['Email'] = email;
+    data['Token'] = token;
     return data;
   }
 }
