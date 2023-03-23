@@ -1,6 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import '../../utilities/color_custom.dart';
 import '../../view_models/main_view_models.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -16,11 +17,14 @@ class _SettingsPageState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //MARK: backgound
+      backgroundColor: AppColors.backgroundColor,
+
       appBar: AppBar(
         elevation: 0,
         title: const Text("Settings"),
         foregroundColor: Colors.grey[900],
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.backgroundColor,
         actions: const [],
       ),
       body: ListView(

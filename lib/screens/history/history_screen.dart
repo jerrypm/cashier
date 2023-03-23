@@ -25,7 +25,7 @@ class HistoryPageState extends State<HistoryScreen> {
 
       //MARK: AppBar
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: AppColors.backgroundColor,
         elevation: 0,
         title: Text(
           'History',

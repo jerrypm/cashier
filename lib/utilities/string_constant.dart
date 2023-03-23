@@ -8,6 +8,7 @@ class Texts {
   static String titleHistory() => 'History';
   static String titleOrders() => 'Orders';
   static String titleSettings() => 'Settings';
+  static String titleItem() => 'Add Item';
   static String welcomeMsg() => 'Cashier app';
 
   //MARK: Button

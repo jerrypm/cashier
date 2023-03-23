@@ -1,10 +1,13 @@
+import 'package:cashier_mate/utilities/color_custom.dart';
 import 'package:flutter/material.dart';
 import '../../utilities/string_constant.dart';
 import '../models/menu_model.dart';
 
 class ItemCartChild extends StatefulWidget {
   final DataSubModel foodItem;
-  const ItemCartChild({super.key, required this.foodItem});
+  final Function(String) onNoteChanged;
+  const ItemCartChild(
+      {super.key, required this.foodItem, required this.onNoteChanged});
 
   @override
   ItemCartChildPage createState() => ItemCartChildPage();
@@ -17,7 +20,7 @@ class ItemCartChildPage extends State<ItemCartChild> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.only(left: 24, bottom: 24, right: 24, top: 8),
       child: Padding(
         padding: const EdgeInsets.only(bottom: 80),
         child: ListView(
@@ -64,7 +67,11 @@ class ItemCartChildPage extends State<ItemCartChild> {
               runSpacing: 8,
               children: widget.foodItem.ingredient!.map((ingredient) {
                 return Chip(
-                  label: Text(ingredient),
+                  label: Text(
+                    ingredient,
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                  backgroundColor: AppColors.secondaryColor.withOpacity(0.6),
                 );
               }).toList(),
             ),
@@ -77,6 +84,7 @@ class ItemCartChildPage extends State<ItemCartChild> {
                 setState(() {
                   _note = value;
                 });
+                widget.onNoteChanged(value);
               },
               decoration: InputDecoration(
                 labelText: Texts.txtNote(),

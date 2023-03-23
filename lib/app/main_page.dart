@@ -53,7 +53,7 @@ class MainPageState extends State<MainPage> {
                     Texts.homeIcon(),
                     height: 25,
                     width: 25,
-                    color: AppColors.darkBlue,
+                    color: AppColors.secondaryColor,
                   )
                 : Image.asset(
                     Texts.homeIcon(),
@@ -69,7 +69,7 @@ class MainPageState extends State<MainPage> {
                     Texts.historyIcon(),
                     height: 25,
                     width: 25,
-                    color: AppColors.darkBlue,
+                    color: AppColors.secondaryColor,
                   )
                 : Image.asset(
                     Texts.historyIcon(),
@@ -85,7 +85,7 @@ class MainPageState extends State<MainPage> {
                     Texts.orderIcon(),
                     height: 25,
                     width: 25,
-                    color: AppColors.darkBlue,
+                    color: AppColors.secondaryColor,
                   )
                 : Image.asset(
                     Texts.orderIcon(),
@@ -101,7 +101,7 @@ class MainPageState extends State<MainPage> {
                     Texts.settingIcon(),
                     height: 25,
                     width: 25,
-                    color: AppColors.darkBlue,
+                    color: AppColors.secondaryColor,
                   )
                 : Image.asset(
                     Texts.settingIcon(),
@@ -112,7 +112,7 @@ class MainPageState extends State<MainPage> {
             label: Texts.titleSettings(),
           ),
         ],
-        activeColor: AppColors.darkBlue,
+        activeColor: AppColors.secondaryColor,
       ),
     );
   }

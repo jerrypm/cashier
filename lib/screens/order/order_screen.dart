@@ -45,7 +45,7 @@ class OrderPageState extends State<OrderScreen> {
 
       //MARK: AppBar
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.backgroundColor,
         elevation: 0,
         title: Text(
           'Order',

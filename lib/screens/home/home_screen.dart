@@ -55,13 +55,12 @@ class HomePageState extends State<HomeScreen> {
                             Texts.iconTopHome(),
                             height: 25,
                             width: 25,
-                            // color: Colors.blue,
                           ),
                           const SizedBox(width: 12.0),
                           Text(
                             Texts.titleAppHome(),
                             style: const TextStyle(
-                              color: AppColors.darkBlue,
+                              color: AppColors.secondaryColor,
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
                             ),
@@ -128,22 +127,25 @@ class HomePageState extends State<HomeScreen> {
                           ),
                           child: Row(
                             children: [
-                              TabsItemsbar().tabs[0],
+                              TabsItemsbar()
+                                  .tabs(() => updateList("burger"))[0],
                               const Spacer(),
-                              TabsItemsbar().tabs[1],
+                              TabsItemsbar().tabs(() => updateList("pizza"))[1],
                               const Spacer(),
-                              TabsItemsbar().tabs[2],
+                              TabsItemsbar()
+                                  .tabs(() => updateList("sandwich"))[2],
                               const Spacer(),
-                              TabsItemsbar().tabs[3],
+                              TabsItemsbar().tabs(() => updateList("salad"))[3],
                               const Spacer(),
-                              TabsItemsbar().tabs[4],
+                              TabsItemsbar().tabs(() => updateList("chick"))[4],
                             ],
                           ),
                         ),
 
                         //MARK: Head Section Menu
                         Padding(
-                          padding: const EdgeInsets.only(left: 25, bottom: 8),
+                          padding: const EdgeInsets.only(
+                              left: 25, bottom: 8, right: 25),
                           child: Row(
                             children: [
                               Text(
@@ -152,6 +154,23 @@ class HomePageState extends State<HomeScreen> {
                                   color: Colors.blueGrey[700],
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const Spacer(),
+                              Container(
+                                height: 40,
+                                width: 40,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.blueGrey),
+                                  borderRadius: BorderRadius.circular(100),
+                                ),
+                                child: IconButton(
+                                  color: Colors.blueGrey,
+                                  icon: const Icon(Icons.refresh_rounded),
+                                  iconSize: 20.0,
+                                  onPressed: () {
+                                    updateList(Texts.empty());
+                                  },
                                 ),
                               ),
                             ],

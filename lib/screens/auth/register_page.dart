@@ -62,7 +62,7 @@ class RegisterPage extends State<RegisterScreen> {
                       style: const TextStyle(
                         fontSize: 26,
                         fontWeight: FontWeight.bold,
-                        color: AppColors.darkBlue,
+                        color: AppColors.secondaryColor,
                       )),
                 ),
                 const SizedBox(height: 8.0),
@@ -71,7 +71,7 @@ class RegisterPage extends State<RegisterScreen> {
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
-                        color: AppColors.darkBlue,
+                        color: AppColors.secondaryColor,
                       )),
                 ),
                 const SizedBox(height: 16.0),
@@ -89,11 +89,11 @@ class RegisterPage extends State<RegisterScreen> {
                       color: Colors.grey.shade900,
                     ),
                     focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: AppColors.darkBlue),
+                      borderSide: BorderSide(color: AppColors.secondaryColor),
                     ),
                     prefixIcon: const Icon(
                       Icons.person_outline,
-                      color: AppColors.darkBlue,
+                      color: AppColors.secondaryColor,
                     ),
                   ),
                   onSaved: (value) => name = value.toString(),
@@ -106,11 +106,11 @@ class RegisterPage extends State<RegisterScreen> {
                       color: Colors.grey.shade900,
                     ),
                     focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: AppColors.darkBlue),
+                      borderSide: BorderSide(color: AppColors.secondaryColor),
                     ),
                     prefixIcon: const Icon(
                       Icons.email_outlined,
-                      color: AppColors.darkBlue,
+                      color: AppColors.secondaryColor,
                     ),
                   ),
                   validator: (value) {
@@ -130,17 +130,17 @@ class RegisterPage extends State<RegisterScreen> {
                       color: Colors.grey.shade900,
                     ),
                     focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: AppColors.darkBlue),
+                      borderSide: BorderSide(color: AppColors.secondaryColor),
                     ),
                     prefixIcon: const Icon(
                       Icons.lock_outlined,
-                      color: AppColors.darkBlue,
+                      color: AppColors.secondaryColor,
                     ),
                     suffixIcon: IconButton(
                       icon: Icon(
                         // Check if password is visible
                         obscureText ? Icons.visibility : Icons.visibility_off,
-                        color: AppColors.darkBlue,
+                        color: AppColors.secondaryColor,
                       ),
                       onPressed: () {
                         // Toggle password visibility
@@ -167,17 +167,17 @@ class RegisterPage extends State<RegisterScreen> {
                       color: Colors.grey.shade900,
                     ),
                     focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: AppColors.darkBlue),
+                      borderSide: BorderSide(color: AppColors.secondaryColor),
                     ),
                     prefixIcon: const Icon(
                       Icons.lock_outline,
-                      color: AppColors.darkBlue,
+                      color: AppColors.secondaryColor,
                     ),
                     suffixIcon: IconButton(
                       icon: Icon(
                         // Check if password is visible
                         obscureText ? Icons.visibility : Icons.visibility_off,
-                        color: AppColors.darkBlue,
+                        color: AppColors.secondaryColor,
                       ),
                       onPressed: () {
                         // Toggle password visibility
@@ -207,7 +207,7 @@ class RegisterPage extends State<RegisterScreen> {
                       handleSubmit(context);
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.darkBlue,
+                      backgroundColor: AppColors.secondaryColor,
                       padding: const EdgeInsets.all(16),
                     ),
                     child: Text(Texts.signUp()),
@@ -226,7 +226,7 @@ class RegisterPage extends State<RegisterScreen> {
                     alignment: Alignment.center,
                     child: Text(
                       Texts.txtSwitchLogin(),
-                      style: const TextStyle(color: AppColors.darkBlue),
+                      style: const TextStyle(color: AppColors.secondaryColor),
                     ),
                   ),
                 ),

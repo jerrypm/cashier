@@ -16,13 +16,13 @@ GridTile getGridItem(DataSubModel item, ViewType viewType) {
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(color: Colors.transparent, width: 6),
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
-              color: AppColors.darkPurple,
+              color: AppColors.secondaryColor.withOpacity(0.3),
               blurRadius: 24,
-              offset: Offset(0, 20),
+              offset: const Offset(0, 20),
             ),
-          ], // Tambahkan border di sini
+          ],
         ),
         padding: const EdgeInsets.all(0.0),
         child: ClipRRect(

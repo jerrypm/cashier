@@ -61,7 +61,7 @@ class LoginPage extends State<loginScreen> {
                       style: const TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
-                        color: AppColors.darkBlue,
+                        color: AppColors.secondaryColor,
                       )),
                 ),
                 const SizedBox(height: 8.0),
@@ -70,7 +70,7 @@ class LoginPage extends State<loginScreen> {
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
-                        color: AppColors.darkBlue,
+                        color: AppColors.secondaryColor,
                       )),
                 ),
                 const SizedBox(height: 16.0),
@@ -87,11 +87,11 @@ class LoginPage extends State<loginScreen> {
                       color: Colors.grey.shade900,
                     ),
                     focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: AppColors.darkBlue),
+                      borderSide: BorderSide(color: AppColors.secondaryColor),
                     ),
                     prefixIcon: const Icon(
                       Icons.email_outlined,
-                      color: AppColors.darkBlue,
+                      color: AppColors.secondaryColor,
                     ),
                   ),
                 ),
@@ -104,17 +104,17 @@ class LoginPage extends State<loginScreen> {
                       color: Colors.grey.shade900,
                     ),
                     focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: AppColors.darkBlue),
+                      borderSide: BorderSide(color: AppColors.secondaryColor),
                     ),
                     prefixIcon: const Icon(
                       Icons.lock_outline,
-                      color: AppColors.darkBlue,
+                      color: AppColors.secondaryColor,
                     ),
                     suffixIcon: IconButton(
                       icon: Icon(
                         // Check if password is visible
                         obscureText ? Icons.visibility : Icons.visibility_off,
-                        color: AppColors.darkBlue,
+                        color: AppColors.secondaryColor,
                       ),
                       onPressed: () {
                         // Toggle password visibility
@@ -151,7 +151,7 @@ class LoginPage extends State<loginScreen> {
                       handleSubmit(context);
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.darkBlue,
+                      backgroundColor: AppColors.secondaryColor,
                       padding: const EdgeInsets.all(16),
                     ),
                     child: Text(Texts.signIn()),
@@ -170,7 +170,7 @@ class LoginPage extends State<loginScreen> {
                     alignment: Alignment.center,
                     child: Text(
                       Texts.txtSwitchRegister(),
-                      style: const TextStyle(color: AppColors.darkBlue),
+                      style: const TextStyle(color: AppColors.secondaryColor),
                     ),
                   ),
                 ),

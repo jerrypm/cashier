@@ -3,17 +3,30 @@ import 'package:flutter/material.dart';
 
 class TabItems extends StatelessWidget {
   final String iconPath;
+  final Function onTap;
 
-  const TabItems({super.key, required this.iconPath});
+  const TabItems({
+    super.key,
+    required this.iconPath,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Tab(
-      height: 50,
+    return InkWell(
+      onTap: () => onTap(),
       child: Container(
+        height: 50,
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: AppColors.darkBlue.withOpacity(0.6),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.secondaryColor.withOpacity(0.3),
+              blurRadius: 24,
+              offset: const Offset(0, 10),
+            ),
+          ],
+          color: AppColors.secondaryColor.withOpacity(0.6),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Image.asset(
