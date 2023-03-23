@@ -28,7 +28,7 @@ class AppService extends ChangeNotifier {
       case AppEndpoint.logout:
         return '${Texts.baseUrl()}auth/logout';
       case AppEndpoint.menuList:
-        return 'https://gist.githubusercontent.com/jerrypm/65bd1be2834809351c55125ddd4ce56b/raw/850b06732814ed6be396a212f8b1ab3cd40af1ae/menu_food.json';
+        return '${Texts.baseUrlGit()}65bd1be2834809351c55125ddd4ce56b/raw/a46f6816fc4dc4310dd88ec2325e68a13eaf4678/menu_food.json';
     }
   }
 

@@ -9,9 +9,7 @@ import '../../../widgets/grid_item.dart';
 import '../../models/menu_model.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({
-    Key? key,
-  }) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   HomePageState createState() => HomePageState();
@@ -28,12 +26,6 @@ class HomePageState extends State<HomeScreen> {
           .where((element) =>
               element.title!.toLowerCase().contains(value.toLowerCase()))
           .toList(); // array
-    });
-  }
-
-  void _incrementValue() {
-    setState(() {
-      homeViewModel.totalOrders = 1;
     });
   }
 

@@ -29,6 +29,7 @@ class DataSubModel {
   String? desc;
   String? title;
   double? price;
+  List<String>? ingredient;
 
   DataSubModel({
     this.imageUrl,
@@ -42,6 +43,7 @@ class DataSubModel {
     title = json['title'];
     desc = json['desc'];
     price = json['price'];
+    ingredient = json['ingredient'].cast<String>();
   }
 
   Map<String, dynamic> toJson() {
@@ -50,6 +52,7 @@ class DataSubModel {
     data['title'] = title;
     data['desc'] = desc;
     data['price'] = price;
+    data['ingredient'] = ingredient;
     return data;
   }
 }

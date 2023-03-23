@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import '../../utilities/color_custom.dart';
 
 class HistoryScreen extends StatefulWidget {
-  const HistoryScreen({
-    Key? key,
-  }) : super(key: key);
+  const HistoryScreen({Key? key}) : super(key: key);
 
   @override
   HistoryPageState createState() => HistoryPageState();

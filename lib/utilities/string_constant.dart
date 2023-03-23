@@ -55,7 +55,7 @@ class Texts {
 
   //MARK: URL
   static String baseUrl() => 'http://restapi.adequateshop.com/api/';
-
+  static String baseUrlGit() => 'https://gist.githubusercontent.com/jerrypm/';
   static String baseUrlLocal() => 'http://0.0.0.0:3003/';
 
   // Hardcoded login credentials
@@ -67,4 +67,5 @@ class Texts {
   static String txtQuantity() => 'Quantity';
   static String txtNote() => 'Note';
   static String txtCart() => 'Add to Cart';
+  static String txtIngredients() => 'Ingredients:';
 }

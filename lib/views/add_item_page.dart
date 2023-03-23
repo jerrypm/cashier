@@ -17,6 +17,11 @@ class AddItemsPageState extends State<AddItemsPage> {
   int itemQuantity = 0;
   int _itemCount = 1;
 
+//  void _incrementValue() {
+//     setState(() {
+//       homeViewModel.totalOrders = 1;
+//     });
+//   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,7 +109,8 @@ class AddItemsPageState extends State<AddItemsPage> {
                             return AppColors.darkBlue;
                           }),
                         ),
-                        child: Text('${Texts.txtCart()} - \$200'),
+                        child: Text(
+                            '${Texts.txtCart()} - \$${(widget.foodItem.price! * _itemCount)}'),
                       ),
                     ),
                   ),
