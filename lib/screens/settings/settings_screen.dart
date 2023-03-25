@@ -22,7 +22,12 @@ class _SettingsPageState extends State<SettingsScreen> {
 
       appBar: AppBar(
         elevation: 0,
-        title: const Text("Settings"),
+        title: const Text(
+          "Settings",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         foregroundColor: Colors.grey[900],
         backgroundColor: AppColors.backgroundColor,
         actions: const [],

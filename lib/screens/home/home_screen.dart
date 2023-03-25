@@ -19,6 +19,7 @@ class HomePageState extends State<HomeScreen> {
   final HomeViewModel homeViewModel = Get.put(HomeViewModel());
   List<DataSubModel> dispalylist = <DataSubModel>[].obs;
 
+  //MARK: Search
   void updateList(String value) {
     //MARK: This function will filter the list
     setState(() {

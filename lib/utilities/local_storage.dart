@@ -23,6 +23,24 @@ class LocalStorage {
     return jsonList.map((e) => Order.fromJson(e)).toList();
   }
 
+  //MARK: Delete All List
+  Future<void> deleteOrder(Order order) async {
+    final prefs = await SharedPreferences.getInstance();
+    final orders = await getOrders();
+    orders.remove(order);
+    final jsonString = json.encode(orders.map((e) => e.toJson()).toList());
+    await prefs.setString(_ordersKey, jsonString);
+  }
+
+  //MARK: Delete by index
+  Future<void> deleteOrderAtIndex(int index) async {
+    final prefs = await SharedPreferences.getInstance();
+    final orders = await getOrders();
+    orders.removeAt(index);
+    final jsonString = json.encode(orders.map((e) => e.toJson()).toList());
+    await prefs.setString(_ordersKey, jsonString);
+  }
+
   // // Menyimpan riwayat transaksi
   // Future<void> saveTransaction(Transaction transaction) async {
   //   final prefs = await SharedPreferences.getInstance();

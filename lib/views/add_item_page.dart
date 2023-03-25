@@ -131,7 +131,8 @@ class AddItemsPageState extends State<AddItemsPage> {
                             totalPrice: double.parse(_total),
                             date: DateTime.now(),
                           );
-                          // await localStorage.saveOrder(order);
+                          await localStorage.saveOrder(order);
+                          setState(() {});
                         }, // need total iteam
 
                         style: ButtonStyle(

@@ -29,7 +29,10 @@ class HistoryPageState extends State<HistoryScreen> {
         elevation: 0,
         title: Text(
           'History',
-          style: TextStyle(color: Colors.grey[900]),
+          style: TextStyle(
+            color: Colors.grey[900],
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
 
