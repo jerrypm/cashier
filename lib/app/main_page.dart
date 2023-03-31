@@ -48,67 +48,43 @@ class MainPageState extends State<MainPage> {
         height: 60,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: selectedIndex == 0
-                ? Image.asset(
-                    Texts.homeIcon(),
-                    height: 25,
-                    width: 25,
-                    color: AppColors.secondaryColor,
-                  )
-                : Image.asset(
-                    Texts.homeIcon(),
-                    height: 25,
-                    width: 25,
-                    color: Colors.grey,
-                  ),
+            icon: Image.asset(
+              Texts.homeIcon(),
+              height: 25,
+              width: 25,
+              color:
+                  selectedIndex == 0 ? AppColors.secondaryColor : Colors.grey,
+            ),
             label: Texts.titleHome(),
           ),
           BottomNavigationBarItem(
-            icon: selectedIndex == 1
-                ? Image.asset(
-                    Texts.historyIcon(),
-                    height: 25,
-                    width: 25,
-                    color: AppColors.secondaryColor,
-                  )
-                : Image.asset(
-                    Texts.historyIcon(),
-                    height: 25,
-                    width: 25,
-                    color: Colors.grey,
-                  ),
+            icon: Image.asset(
+              Texts.historyIcon(),
+              height: 25,
+              width: 25,
+              color:
+                  selectedIndex == 1 ? AppColors.secondaryColor : Colors.grey,
+            ),
             label: Texts.titleHistory(),
           ),
           BottomNavigationBarItem(
-            icon: selectedIndex == 2
-                ? Image.asset(
-                    Texts.orderIcon(),
-                    height: 25,
-                    width: 25,
-                    color: AppColors.secondaryColor,
-                  )
-                : Image.asset(
-                    Texts.orderIcon(),
-                    height: 25,
-                    width: 25,
-                    color: Colors.grey,
-                  ),
+            icon: Image.asset(
+              Texts.orderIcon(),
+              height: 25,
+              width: 25,
+              color:
+                  selectedIndex == 2 ? AppColors.secondaryColor : Colors.grey,
+            ),
             label: Texts.titleOrders(),
           ),
           BottomNavigationBarItem(
-            icon: selectedIndex == 3
-                ? Image.asset(
-                    Texts.settingIcon(),
-                    height: 25,
-                    width: 25,
-                    color: AppColors.secondaryColor,
-                  )
-                : Image.asset(
-                    Texts.settingIcon(),
-                    height: 25,
-                    width: 25,
-                    color: Colors.grey,
-                  ),
+            icon: Image.asset(
+              Texts.settingIcon(),
+              height: 25,
+              width: 25,
+              color:
+                  selectedIndex == 3 ? AppColors.secondaryColor : Colors.grey,
+            ),
             label: Texts.titleSettings(),
           ),
         ],

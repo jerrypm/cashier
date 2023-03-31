@@ -54,7 +54,7 @@ class OrderPageState extends State<OrderScreen> {
                           horizontal: 16, vertical: 8),
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(10),
                         boxShadow: [
                           BoxShadow(
                             color: AppColors.secondaryColor.withOpacity(0.3),
@@ -68,7 +68,7 @@ class OrderPageState extends State<OrderScreen> {
                         leading: SizedBox(
                           width: 100,
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(10),
                             child: AspectRatio(
                               aspectRatio: 1,
                               child: Image.network(
