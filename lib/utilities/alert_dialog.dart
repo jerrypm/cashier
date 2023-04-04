@@ -37,3 +37,47 @@ class CustomSnackBar {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }
+
+//MARK: Custom Dialog
+void CustomDialog({
+  required String title,
+  required String subTitle,
+  required Widget cancelButton,
+  required Widget deleteButton,
+  double radius = 10.0,
+}) {
+  Get.dialog(
+    Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(radius),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
+            ),
+            const SizedBox(height: 16),
+            Text(subTitle),
+            const SizedBox(height: 24),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                cancelButton,
+                const Spacer(),
+                deleteButton,
+              ],
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}

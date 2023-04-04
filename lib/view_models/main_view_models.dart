@@ -65,11 +65,31 @@ class HomeViewModel extends GetxController {
   }
 
   /*
+    MARK: Save local data share preference
+  */
+
+  void saveOrders(Order order) async {
+    orders.add(order);
+    await _localStorage.saveOrder(order);
+    update();
+  }
+
+  /*
+    MARK: Update local data share preference
+  */
+
+  @override
+  void update([List<Object>? ids, bool condition = true]) {
+    orders.refresh();
+  }
+
+  /*
     MARK: Load local data share preference
   */
 
   void fetchOrders() async {
     orders.value = await _localStorage.getOrders();
+    update();
   }
 
   /*
@@ -77,6 +97,35 @@ class HomeViewModel extends GetxController {
   */
 
   void deleteOrder(int index) async {
-    // orders.value = await _localStorage.deleteOrderAtIndex(index)
+    orders.removeAt(index);
+    await _localStorage.deleteOrderAtIndex(index);
+    update();
+  }
+}
+
+class CartController extends GetxController {
+  // final List<Order> _orderItems = [].obs;
+
+  // List<Order> get orderItems => _orderItems;
+
+  double get totalOrder {
+    double total = 0;
+    // for (var item in _orderItems) {
+    //   total += item.price * item.quantity;
+    // }
+    return total;
+  }
+
+  int get totalItems {
+    int total = 0;
+    // for (var item in _orderItems) {
+    //   total += item.quantity;
+    // }
+    return total;
+  }
+
+  void processPayment(double customerMoney) {
+    // Tambahkan logika pembayaran di sini
+    Get.back();
   }
 }

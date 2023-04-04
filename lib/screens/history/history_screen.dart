@@ -12,6 +12,7 @@ class HistoryScreen extends StatefulWidget {
 
 class HistoryPageState extends State<HistoryScreen> {
   final List<Map<String, dynamic>> _dummyData = [
+    // change here
     {
       'orderNumber': '#0001',
       'quantity': 2,
@@ -58,67 +59,77 @@ class HistoryPageState extends State<HistoryScreen> {
           ),
         ),
       ),
-      body: ListView.builder(
-        itemCount: _dummyData.length,
-        itemBuilder: (BuildContext context, int index) {
-          String dateText;
-          if (_dummyData[index]['timestamp']
-              .isAfter(DateTime.now().subtract(const Duration(days: 1)))) {
-            dateText = DateFormat('jm').format(_dummyData[index]['timestamp']);
-          } else {
-            dateText = DateFormat('dd MMM yyyy')
-                .format(_dummyData[index]['timestamp']);
-          }
+      body: _dummyData.isEmpty // change here
+          ? Center(
+              child: Image.asset(
+                'assets/images/undraw_no_data_.png',
+                width: 200,
+                height: 200,
+              ),
+            )
+          : ListView.builder(
+              itemCount: _dummyData.length, // change here
+              itemBuilder: (BuildContext context, int index) {
+                String dateText;
+                if (_dummyData[index]['timestamp'].isAfter(
+                    DateTime.now().subtract(const Duration(days: 1)))) {
+                  dateText = DateFormat('jm')
+                      .format(_dummyData[index]['timestamp']); // change here
+                } else {
+                  dateText = DateFormat('dd MMM yyyy')
+                      .format(_dummyData[index]['timestamp']); // change here
+                }
 
-          return Container(
-            height: 72,
-            margin: const EdgeInsets.all(12.0),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.secondaryColor.withOpacity(0.3),
-                  spreadRadius: 2,
-                  blurRadius: 5,
-                  offset: const Offset(0, 3),
-                ),
-              ],
+                return Container(
+                  height: 72,
+                  margin: const EdgeInsets.all(12.0),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.secondaryColor.withOpacity(0.3),
+                        spreadRadius: 2,
+                        blurRadius: 5,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: ListTile(
+                    title: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Spacer(),
+                        Text(
+                          'Orders: ${_dummyData[index]['orderNumber']}', // change here
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        const Spacer(flex: 16),
+                        Text(
+                            'Quantity: ${_dummyData[index]['quantity']}'), // change here
+                        const Spacer(flex: 16),
+                      ],
+                    ),
+                    trailing: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        const Spacer(),
+                        Text(
+                          '$dateText',
+                          style: TextStyle(fontSize: 12.0),
+                        ),
+                        const Spacer(flex: 16),
+                        Text(
+                          '\$${_dummyData[index]['price'].toStringAsFixed(2)}', // change here
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        const Spacer(flex: 16),
+                      ],
+                    ),
+                  ),
+                );
+              },
             ),
-            child: ListTile(
-              title: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Spacer(),
-                  Text(
-                    'Orders: ${_dummyData[index]['orderNumber']}',
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  const Spacer(flex: 16),
-                  Text('Quantity: ${_dummyData[index]['quantity']}'),
-                  const Spacer(flex: 16),
-                ],
-              ),
-              trailing: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  const Spacer(),
-                  Text(
-                    '$dateText',
-                    style: TextStyle(fontSize: 12.0),
-                  ),
-                  const Spacer(flex: 16),
-                  Text(
-                    '\$${_dummyData[index]['price'].toStringAsFixed(2)}',
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  const Spacer(flex: 16),
-                ],
-              ),
-            ),
-          );
-        },
-      ),
     );
   }
 }

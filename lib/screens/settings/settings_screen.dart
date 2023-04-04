@@ -1,6 +1,9 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../Utilities/string_constant.dart';
+import '../../utilities/alert_dialog.dart';
 import '../../utilities/color_custom.dart';
 import '../../view_models/main_view_models.dart';
 
@@ -66,9 +69,38 @@ class _SettingsPageState extends State<SettingsScreen> {
                 backgroundColor: Colors.blueGrey,
               ),
               onPressed: () {
-                viewModel.navigationLogout(context);
+                CustomDialog(
+                  title: 'Are you sure you want to Logout?',
+                  subTitle: Texts.empty(),
+                  cancelButton: ElevatedButton(
+                    onPressed: () {
+                      Get.back(result: false);
+                    },
+                    child: Text('No'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.redAccent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                  deleteButton: ElevatedButton(
+                    onPressed: () {
+                      viewModel.navigationLogout(context);
+                      Get.back(result: true);
+                    },
+                    child: Text('Yes'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.secondaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                  radius: 10.0, // set custom radius
+                );
               },
-              child: const Text("logout"),
+              child: const Text("Logout"),
             ),
           ),
         ],

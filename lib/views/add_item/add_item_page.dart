@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../utilities/string_constant.dart';
 import '../../utilities/local_storage.dart';
-import '../../views/item_cart_child.dart';
-import '../models/menu_model.dart';
-import '../models/order_model.dart';
+import '../../views/add_item/item_cart_child.dart';
+import '../../models/menu_model.dart';
+import '../../models/order_model.dart';
+import '../../view_models/main_view_models.dart';
 
 class AddItemsPage extends StatefulWidget {
   final DataSubModel foodItem;
@@ -16,6 +17,8 @@ class AddItemsPage extends StatefulWidget {
 }
 
 class AddItemsPageState extends State<AddItemsPage> {
+  final HomeViewModel orderViewModel = Get.put(HomeViewModel());
+
   final localStorage = LocalStorage();
   String itemName = Texts.empty();
   int itemQuantity = 0;
@@ -131,8 +134,9 @@ class AddItemsPageState extends State<AddItemsPage> {
                             totalPrice: double.parse(_total),
                             date: DateTime.now(),
                           );
-                          await localStorage.saveOrder(order);
-                          setState(() {});
+                          setState(() {
+                            orderViewModel.saveOrders(order);
+                          });
                         }, // need total iteam
 
                         style: ButtonStyle(

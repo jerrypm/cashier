@@ -1,5 +1,5 @@
 import 'package:cashier_mate/utilities/color_custom.dart';
-import 'package:cashier_mate/views/add_item_page.dart';
+import 'package:cashier_mate/views/add_item/add_item_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../models/product_type.dart';

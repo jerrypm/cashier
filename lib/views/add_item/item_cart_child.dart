@@ -1,7 +1,7 @@
 import 'package:cashier_mate/utilities/color_custom.dart';
 import 'package:flutter/material.dart';
 import '../../utilities/string_constant.dart';
-import '../models/menu_model.dart';
+import '../../models/menu_model.dart';
 
 class ItemCartChild extends StatefulWidget {
   final DataSubModel foodItem;
