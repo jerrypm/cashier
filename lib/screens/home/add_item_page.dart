@@ -17,7 +17,7 @@ class AddItemsPage extends StatefulWidget {
 }
 
 class AddItemsPageState extends State<AddItemsPage> {
-  final HomeViewModel orderViewModel = Get.put(HomeViewModel());
+  final MainViewModel orderViewModel = Get.put(MainViewModel());
 
   final localStorage = LocalStorage();
   String itemName = Texts.empty();

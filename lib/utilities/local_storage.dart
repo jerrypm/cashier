@@ -1,12 +1,30 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../models/auth_model.dart';
 import '../models/order_model.dart';
 
 class LocalStorage {
+  static const String _userKey = 'user';
   static const String _ordersKey = 'orders';
   static const String _historyKey = 'history';
 
-  //MARK: Save Order
+  //MARK: User ================================================================
+  static Future<void> saveAuthModel(AuthModel authModel) async {
+    final prefs = await SharedPreferences.getInstance();
+    final jsonString = json.encode(authModel.toJson());
+    await prefs.setString(_userKey, jsonString);
+  }
+
+  Future<AuthModel?> loadAuthModel() async {
+    final prefs = await SharedPreferences.getInstance();
+    final jsonString = prefs.getString(_userKey);
+    if (jsonString == null) return null;
+    final jsonMap = json.decode(jsonString);
+    return AuthModel.fromJson(jsonMap);
+  }
+
+  //MARK: Save Order ==========================================================
   Future<void> saveOrder(Order order) async {
     final prefs = await SharedPreferences.getInstance();
     final orders = await getOrders();
@@ -41,7 +59,7 @@ class LocalStorage {
     await prefs.setString(_ordersKey, jsonString);
   }
 
-  // // Menyimpan riwayat transaksi
+  // // Menyimpan riwayat transaksi ==============================================
   // Future<void> saveTransaction(Transaction transaction) async {
   //   final prefs = await SharedPreferences.getInstance();
   //   final transactions = await getTransactions();

@@ -16,7 +16,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomePageState extends State<HomeScreen> {
-  final HomeViewModel homeViewModel = Get.put(HomeViewModel());
+  final MainViewModel homeViewModel = Get.put(MainViewModel());
   List<DataSubModel> dispalylist = <DataSubModel>[].obs;
 
   //MARK: Search
@@ -72,13 +72,23 @@ class HomePageState extends State<HomeScreen> {
                         decoration: BoxDecoration(
                           border: Border.all(color: Colors.blueGrey),
                           borderRadius: const BorderRadius.all(
-                            Radius.circular(20.0),
+                            Radius.circular(30.0),
                           ),
                         ),
-                        padding: const EdgeInsets.all(8),
-                        child: const Icon(
-                          Icons.shopping_bag_outlined,
-                          color: Colors.blueGrey,
+                        padding: const EdgeInsets.all(4),
+                        child: CircleAvatar(
+                          backgroundColor:
+                              AppColors.secondaryColor.withOpacity(0.8),
+                          child: Obx(
+                            () => Text(
+                              homeViewModel.username
+                                  .substring(0, 2)
+                                  .toUpperCase(),
+                              style: const TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ],

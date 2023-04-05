@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../app/main_page.dart';
+import '../../utilities/color_custom.dart';
 
 class PaymentSuccessPage extends StatelessWidget {
   final int totalItem;
@@ -18,11 +19,15 @@ class PaymentSuccessPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //MARK: backgound
+      backgroundColor: AppColors.backgroundColor,
+
+      //MARK: Body
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          CircleAvatar(
+          const CircleAvatar(
             radius: 40,
             backgroundColor: Color(0xFF2DDD98),
             child: Icon(
@@ -31,7 +36,7 @@ class PaymentSuccessPage extends StatelessWidget {
               size: 50,
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Text(
             'Success',
             style: TextStyle(
@@ -39,7 +44,7 @@ class PaymentSuccessPage extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Container(
             padding: EdgeInsets.all(16),
             decoration: BoxDecoration(
@@ -54,30 +59,30 @@ class PaymentSuccessPage extends StatelessWidget {
               children: [
                 Text(
                   'Total Items: $totalItem',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text(
                   'Total Paid: \$${totalPaid.toStringAsFixed(2)}',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text(
                   'Change: \$${change.toStringAsFixed(2)}',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                   ),
                 ),
               ],
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: TextFormField(
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
@@ -85,7 +90,7 @@ class PaymentSuccessPage extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [

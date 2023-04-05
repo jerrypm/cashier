@@ -27,6 +27,7 @@ dependencies:
   google_sign_in: ^6.0.2
   # flutter_facebook_auth: ^5.0.8
   provider: ^6.0.5
+  webview_flutter: ^4.0.7
 
 flutter_icons: #<-- asset add in here
   android: "launcher_icon"

@@ -1,5 +1,5 @@
 import 'package:cashier_mate/models/order_model.dart';
-import 'package:cashier_mate/views/payment/payment_page.dart';
+import 'package:cashier_mate/screens/order/payment_page.dart';
 import 'package:cashier_mate/utilities/alert_dialog.dart';
 import 'package:cashier_mate/utilities/string_constant.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,7 @@ class OrderScreen extends StatefulWidget {
 }
 
 class OrderPageState extends State<OrderScreen> {
-  final HomeViewModel orderViewModel = Get.put(HomeViewModel());
+  final MainViewModel orderViewModel = Get.put(MainViewModel());
 
   double calculateTotalPrice() {
     return orderViewModel.orders

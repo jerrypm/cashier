@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../Utilities/string_constant.dart';
 import '../../utilities/color_custom.dart';
-import '../../view_models/main_view_models.dart';
+import '../../view_models/cart_view_models.dart';
 import '../../widgets/button_item.dart';
 
 class PaymentPage extends StatefulWidget {

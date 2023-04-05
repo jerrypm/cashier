@@ -12,6 +12,8 @@ class Texts {
   static String titleSettings() => 'Settings';
   static String titleItem() => 'Add Item';
   static String titlePayment() => 'Payment';
+  static String titleSetting() => 'Settings';
+  static String titleWeb() => 'Web';
   static String welcomeMsg() => 'Cashier app';
 
   //MARK: Button

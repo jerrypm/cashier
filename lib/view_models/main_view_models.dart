@@ -1,6 +1,5 @@
 //MARK: Hit API Using GetX
 
-import 'package:cashier_mate/views/payment/payment_success_page.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../services/app_service.dart';
@@ -12,7 +11,7 @@ import '../../models/menu_model.dart';
 import '../utilities/local_storage.dart';
 import 'package:get/get.dart';
 
-class HomeViewModel extends GetxController {
+class MainViewModel extends GetxController {
   //MARK: grid
   ViewType viewType = ViewType.grid;
   int crossAxisCount = 2;
@@ -22,6 +21,9 @@ class HomeViewModel extends GetxController {
   final resultFoods = <DataSubModel>[].obs;
   final LocalStorage _localStorage = LocalStorage();
   var orders = <Order>[].obs;
+  final email = ''.obs;
+  final username = 'user'.obs;
+  final token = ''.obs;
 
   //MARK: Total Item
   int totalOrders = 0;
@@ -42,6 +44,7 @@ class HomeViewModel extends GetxController {
     super.onInit();
     handleItemsList();
     fetchOrders();
+    loadUserData();
   }
 
   /*
@@ -102,36 +105,15 @@ class HomeViewModel extends GetxController {
     await _localStorage.deleteOrderAtIndex(index);
     update();
   }
-}
 
-class CartController extends GetxController {
-  // final List<Order> _orderItems = [].obs;
+  /*
+    MARK: load data User
+  */
 
-  // List<Order> get orderItems => _orderItems;
-
-  double get totalOrder {
-    double total = 5000;
-    // for (var item in _orderItems) {
-    //   total += item.price * item.quantity;
-    // }
-    return total;
-  }
-
-  int get totalItems {
-    int total = 0;
-    // for (var item in _orderItems) {
-    //   total += item.quantity;
-    // }
-    return total;
-  }
-
-  void processPayment(double result) {
-    // Tambahkan logika pembayaran di sini
-    // Get.back();
-    // Get.to(PaymentSuccessPage(totalItem: 10, totalPaid: 1100, change: 10));
-    Get.off(
-      () => PaymentSuccessPage(totalItem: 10, totalPaid: 1100, change: 10),
-      transition: Transition.noTransition, // Pilih transisi yang diinginkan
-    );
+  void loadUserData() async {
+    final userData = await _localStorage.loadAuthModel();
+    email.value = userData?.data?.email ?? "";
+    username.value = userData?.data?.name ?? "";
+    token.value = userData?.data?.token ?? "";
   }
 }

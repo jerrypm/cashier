@@ -17,7 +17,7 @@ class MainPage extends StatefulWidget {
 }
 
 class MainPageState extends State<MainPage> {
-  final HomeViewModel homeViewModel = HomeViewModel();
+  final MainViewModel homeViewModel = MainViewModel();
   int selectedIndex = 0;
 
   //MARK: List Items Bottom Bar

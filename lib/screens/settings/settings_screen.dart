@@ -1,5 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'package:cashier_mate/screens/settings/webview_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../Utilities/string_constant.dart';
@@ -15,19 +16,21 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsScreen> {
-  bool _notificationsEnabled = false;
-  final HomeViewModel viewModel = HomeViewModel();
+  final MainViewModel viewModel = Get.put(MainViewModel());
+
+  //MARK: Body
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       //MARK: backgound
       backgroundColor: AppColors.backgroundColor,
 
+      //MARK: App Bar
       appBar: AppBar(
         elevation: 0,
-        title: const Text(
-          "Settings",
-          style: TextStyle(
+        title: Text(
+          Texts.titleSettings(),
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -35,75 +38,122 @@ class _SettingsPageState extends State<SettingsScreen> {
         backgroundColor: AppColors.backgroundColor,
         actions: const [],
       ),
-      body: ListView(
-        children: <Widget>[
-          ListTile(
-            title: const Text('Enable Notifications'),
-            trailing: Switch(
-              value: _notificationsEnabled,
-              onChanged: (bool value) {
-                setState(() {
-                  _notificationsEnabled = value;
-                });
-              },
-            ),
-          ),
-          ListTile(
-            title: const Text('Change Theme'),
-            onTap: () {},
-          ),
-          ListTile(
-            title: const Text('Privacy Policy'),
-            onTap: () {},
-          ),
-          ListTile(
-            title: const Text('Terms of Service'),
-            onTap: () {},
-          ),
-          const SizedBox(
-            height: 50.0,
-          ),
-          Center(
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blueGrey,
+
+      //MARK: Body
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: ListView(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    backgroundColor: AppColors.secondaryColor.withOpacity(0.8),
+                    child: Text(
+                      viewModel.username.substring(0, 2).toUpperCase(),
+                      style: const TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Obx(
+                        () => Text(
+                          viewModel.username.value,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      Obx(
+                        () => Text(
+                          viewModel.email.value,
+                          style: TextStyle(
+                            color: Colors.grey[600],
+                            fontSize: 14,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ],
               ),
-              onPressed: () {
-                CustomDialog(
-                  title: 'Are you sure you want to Logout?',
-                  subTitle: Texts.empty(),
-                  cancelButton: ElevatedButton(
-                    onPressed: () {
-                      Get.back(result: false);
-                    },
-                    child: Text('No'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.redAccent,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ),
-                  deleteButton: ElevatedButton(
-                    onPressed: () {
-                      viewModel.navigationLogout(context);
-                      Get.back(result: true);
-                    },
-                    child: Text('Yes'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.secondaryColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ),
-                  radius: 10.0, // set custom radius
-                );
-              },
-              child: const Text("Logout"),
             ),
-          ),
-        ],
+            const Divider(),
+            const ListTile(
+              title: Text('Version'),
+              trailing: Text('1.0.0'),
+            ),
+            const Divider(),
+            ListTile(
+              title: const Text('Privacy Policy'),
+              onTap: () {},
+            ),
+            const Divider(),
+            ListTile(
+              title: const Text('Website'),
+              onTap: () {
+                Get.to(WebViewScreen());
+              },
+            ),
+            const Divider(),
+            const SizedBox(
+              height: 50.0,
+            ),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.secondaryColor.withOpacity(0.6),
+                    minimumSize: const Size(double.infinity, 44),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(22),
+                    ),
+                  ),
+                  onPressed: () {
+                    CustomDialog(
+                      title: 'Are you sure you want to Logout?',
+                      subTitle: Texts.empty(),
+                      cancelButton: ElevatedButton(
+                        onPressed: () {
+                          Get.back(result: false);
+                        },
+                        child: Text('No'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.redAccent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                      deleteButton: ElevatedButton(
+                        onPressed: () {
+                          viewModel.navigationLogout(context);
+                          Get.back(result: true);
+                        },
+                        child: Text('Yes'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.secondaryColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                      radius: 10.0, // set custom radius
+                    );
+                  },
+                  child: const Text("Logout"),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
