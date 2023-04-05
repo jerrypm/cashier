@@ -58,7 +58,7 @@ class OrderPageState extends State<OrderScreen> {
               Expanded(
                 child: Center(
                   child: Image.asset(
-                    'assets/images/undraw_no_data_.png',
+                    Texts.placeholderList(),
                     width: 200,
                     height: 200,
                   ),

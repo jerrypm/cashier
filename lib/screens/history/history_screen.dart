@@ -13,41 +13,45 @@ class HistoryScreen extends StatefulWidget {
 class HistoryPageState extends State<HistoryScreen> {
   final List<Map<String, dynamic>> _dummyData = [
     // change here
-    {
-      'orderNumber': '#0001',
-      'quantity': 2,
-      'timestamp': DateTime(2022, 1, 1, 13, 0),
-      'price': 50.00
-    },
-    {
-      'orderNumber': '#0002',
-      'quantity': 1,
-      'timestamp': DateTime(2022, 1, 2, 10, 30),
-      'price': 25.00
-    },
-    {
-      'orderNumber': '#0003',
-      'quantity': 3,
-      'timestamp': DateTime(2022, 1, 3, 15, 45),
-      'price': 75.00
-    },
-    {
-      'orderNumber': '#0004',
-      'quantity': 4,
-      'timestamp': DateTime(2022, 1, 4, 14, 20),
-      'price': 100.00
-    },
-    {
-      'orderNumber': '#0005',
-      'quantity': 2,
-      'timestamp': DateTime(2023, 3, 30, 11, 10),
-      'price': 50.00
-    }
+    // {
+    //   'orderNumber': '#0001',
+    //   'quantity': 2,
+    //   'timestamp': DateTime(2022, 1, 1, 13, 0),
+    //   'price': 50.00
+    // },
+    // {
+    //   'orderNumber': '#0002',
+    //   'quantity': 1,
+    //   'timestamp': DateTime(2022, 1, 2, 10, 30),
+    //   'price': 25.00
+    // },
+    // {
+    //   'orderNumber': '#0003',
+    //   'quantity': 3,
+    //   'timestamp': DateTime(2022, 1, 3, 15, 45),
+    //   'price': 75.00
+    // },
+    // {
+    //   'orderNumber': '#0004',
+    //   'quantity': 4,
+    //   'timestamp': DateTime(2022, 1, 4, 14, 20),
+    //   'price': 100.00
+    // },
+    // {
+    //   'orderNumber': '#0005',
+    //   'quantity': 2,
+    //   'timestamp': DateTime(2023, 3, 30, 11, 10),
+    //   'price': 50.00
+    // }
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //MARK: backgound
+      backgroundColor: AppColors.backgroundColor,
+
+      //MARK: AppBar
       appBar: AppBar(
         backgroundColor: AppColors.backgroundColor,
         elevation: 0,
@@ -59,10 +63,12 @@ class HistoryPageState extends State<HistoryScreen> {
           ),
         ),
       ),
+
+      //MARK: Body
       body: _dummyData.isEmpty // change here
           ? Center(
               child: Image.asset(
-                'assets/images/undraw_no_data_.png',
+                Texts.placeholderList(),
                 width: 200,
                 height: 200,
               ),

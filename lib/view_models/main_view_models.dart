@@ -1,5 +1,6 @@
 //MARK: Hit API Using GetX
 
+import 'package:cashier_mate/views/payment/payment_success_page.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../services/app_service.dart';
@@ -109,7 +110,7 @@ class CartController extends GetxController {
   // List<Order> get orderItems => _orderItems;
 
   double get totalOrder {
-    double total = 0;
+    double total = 5000;
     // for (var item in _orderItems) {
     //   total += item.price * item.quantity;
     // }
@@ -124,8 +125,13 @@ class CartController extends GetxController {
     return total;
   }
 
-  void processPayment(double customerMoney) {
+  void processPayment(double result) {
     // Tambahkan logika pembayaran di sini
-    Get.back();
+    // Get.back();
+    // Get.to(PaymentSuccessPage(totalItem: 10, totalPaid: 1100, change: 10));
+    Get.off(
+      () => PaymentSuccessPage(totalItem: 10, totalPaid: 1100, change: 10),
+      transition: Transition.noTransition, // Pilih transisi yang diinginkan
+    );
   }
 }

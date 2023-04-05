@@ -1,6 +1,5 @@
-// import '../../Views/manual_page.dart';
-// import '../../Views/order_page.dart';
-// import 'package:get/get.dart';
+import 'package:get/get.dart';
+import '../views/payment/payment_success_page.dart';
 
 // class Routes {
 //   static const INITIAL = '/home';
@@ -8,7 +7,7 @@
 //   static final routes = [
 //     GetPage(
 //       name: '/splash',
-//       page: () => OrderPage(),
+//       page: () => PaymentSuccessPage(),
 //     ),
 //     GetPage(
 //       name: '/login',

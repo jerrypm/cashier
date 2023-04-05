@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Texts {
   //MARK: Default String
   static String titleApp() => 'Cashier Mate';
@@ -43,6 +45,8 @@ class Texts {
   static String orderIcon() => 'assets/icons/orders.png';
   static String settingIcon() => 'assets/icons/settings.png';
   static String iconTopHome() => 'assets/icons/topIcon.png';
+  static String placeholderList() => 'assets/images/undraw_no_data_.png';
+  static String placeholderHome() => 'assets/images/error_404.png';
 
   static String minusIcon() => 'assets/icons/minus-circle.png';
   static String plusIcon() => 'assets/icons/plus-circle.png';
