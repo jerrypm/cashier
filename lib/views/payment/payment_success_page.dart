@@ -1,20 +1,62 @@
+import 'package:cashier_mate/utilities/string_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'dart:io';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:path_provider/path_provider.dart';
 
 import '../../app/main_page.dart';
 import '../../utilities/color_custom.dart';
 
-class PaymentSuccessPage extends StatelessWidget {
+class PaymentSuccessPage extends StatefulWidget {
+  final String itemsNumber;
+  final String date;
   final int totalItem;
   final double totalPaid;
+  final double cash;
   final double change;
 
-  PaymentSuccessPage({
+  const PaymentSuccessPage({
     Key? key,
+    required this.itemsNumber,
+    required this.date,
     required this.totalItem,
     required this.totalPaid,
+    required this.cash,
     required this.change,
   }) : super(key: key);
+
+  @override
+  PaymentSuccessPageState createState() => PaymentSuccessPageState();
+}
+
+class PaymentSuccessPageState extends State<PaymentSuccessPage>
+    with SingleTickerProviderStateMixin {
+  TextEditingController emailText = TextEditingController();
+  AnimationController? _controller;
+  Animation<double>? _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(seconds: 1),
+      vsync: this,
+    )..repeat(reverse: true);
+
+    _animation = CurvedAnimation(
+      parent: _controller!,
+      curve: Curves.easeInOut,
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller!.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,95 +65,296 @@ class PaymentSuccessPage extends StatelessWidget {
       backgroundColor: AppColors.backgroundColor,
 
       //MARK: Body
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const CircleAvatar(
-            radius: 40,
-            backgroundColor: Color(0xFF2DDD98),
-            child: Icon(
-              Icons.check,
-              color: Colors.white,
-              size: 50,
-            ),
-          ),
-          const SizedBox(height: 20),
-          Text(
-            'Success',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 20),
-          Container(
-            padding: EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.grey.shade300,
-                width: 1,
-              ),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+      body: SingleChildScrollView(
+        padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.1),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Stack(
               children: [
-                Text(
-                  'Total Items: $totalItem',
-                  style: const TextStyle(
-                    fontSize: 18,
+                Center(
+                  child: ScaleTransition(
+                    scale: _animation!,
+                    child: const CircleAvatar(
+                      radius: 50,
+                      backgroundColor: Color.fromARGB(255, 193, 244, 223),
+                    ),
                   ),
                 ),
-                const SizedBox(height: 10),
-                Text(
-                  'Total Paid: \$${totalPaid.toStringAsFixed(2)}',
-                  style: const TextStyle(
-                    fontSize: 18,
-                  ),
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  'Change: \$${change.toStringAsFixed(2)}',
-                  style: const TextStyle(
-                    fontSize: 18,
+                const Center(
+                  child: SizedBox(
+                    height: 100,
+                    child: CircleAvatar(
+                      radius: 40,
+                      backgroundColor: Color(0xFF2DDD98),
+                      child: Icon(
+                        Icons.check,
+                        color: Colors.white,
+                        size: 50,
+                      ),
+                    ),
                   ),
                 ),
               ],
             ),
-          ),
-          const SizedBox(height: 20),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: TextFormField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Enter your email',
+            const SizedBox(height: 20),
+            Text(
+              Texts.txtSuccess(),
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
               ),
             ),
-          ),
-          const SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              ElevatedButton(
-                onPressed: () {},
-                child: Text('Send Email'),
+            const SizedBox(height: 20),
+            Text(
+              '${widget.itemsNumber} | ${widget.date}',
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
               ),
-              ElevatedButton(
-                onPressed: () {
-                  Get.offAll(
-                    () => const MainPage(),
-                    transition:
-                        Transition.topLevel, // Pilih transisi yang diinginkan
-                  );
-                },
-                child: Text('Place New Order'),
+            ),
+            const SizedBox(height: 44),
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.grey.shade300,
+                  width: 1,
+                ),
+                borderRadius: BorderRadius.circular(10),
               ),
-            ],
-          ),
-        ],
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        Texts.txtTotalItem(),
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const Spacer(),
+                      Text(
+                        ' ${widget.totalItem}',
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      Text(
+                        Texts.txtTotalPaid(),
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const Spacer(),
+                      Text(
+                        '\$${widget.totalPaid.toStringAsFixed(2)}',
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      Text(
+                        Texts.txtCCash(),
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const Spacer(),
+                      Text(
+                        '\$${widget.cash.toStringAsFixed(2)}',
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      Text(
+                        Texts.txtChange(),
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const Spacer(),
+                      Text(
+                        '\$${widget.change.toStringAsFixed(2)}',
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: TextField(
+                controller: emailText,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(
+                    Icons.email,
+                    color: AppColors.secondaryColor.withOpacity(0.6),
+                  ),
+                  focusedBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: AppColors.secondaryColor),
+                  ),
+                  border: const UnderlineInputBorder(),
+                  hintText: Texts.txtInputEmail(),
+                ),
+              ),
+            ),
+            const SizedBox(height: 44),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: SizedBox(
+                      height: 44,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (emailText.text.isNotEmpty) sendEmailWithPdf();
+                        },
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16.0),
+                            ),
+                          ),
+                          backgroundColor:
+                              MaterialStateProperty.resolveWith<Color>(
+                            (Set<MaterialState> states) {
+                              return AppColors.secondaryColor.withOpacity(0.6);
+                            },
+                          ),
+                        ),
+                        child: Text(Texts.sendEmail()),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: SizedBox(
+                      height: 44,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Get.offAll(
+                            () => const MainPage(),
+                            transition: Transition.topLevel,
+                          );
+                        },
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16.0),
+                            ),
+                          ),
+                          backgroundColor:
+                              MaterialStateProperty.resolveWith<Color>(
+                            (Set<MaterialState> states) {
+                              return AppColors.secondaryColor.withOpacity(0.6);
+                            },
+                          ),
+                        ),
+                        child: Text(Texts.newOrder()),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
+  }
+
+  Future<File> createPdf() async {
+    final pdf = pw.Document();
+
+    final titleStyle =
+        pw.TextStyle(fontSize: 18, fontWeight: pw.FontWeight.bold);
+    const textStyle = pw.TextStyle(fontSize: 14);
+    final separator = pw.Container(height: 1.0, color: PdfColors.grey300);
+
+    pdf.addPage(
+      pw.Page(
+        build: (pw.Context context) {
+          return pw.Column(
+            crossAxisAlignment: pw.CrossAxisAlignment.start,
+            children: [
+              pw.Text('Item number: #001', style: titleStyle),
+              separator,
+              pw.SizedBox(height: 10),
+              pw.Text('Date: 25-12-2023', style: textStyle),
+              pw.SizedBox(height: 5),
+              pw.Text('${Texts.txtTotalItem()} ${widget.totalItem}',
+                  style: textStyle),
+              pw.SizedBox(height: 5),
+              pw.Text('${Texts.txtTotalPaid()} \$${widget.totalPaid}',
+                  style: textStyle),
+              pw.SizedBox(height: 5),
+              pw.Text('${Texts.txtCCash()} \$${widget.cash}', style: textStyle),
+              pw.SizedBox(height: 5),
+              pw.Text('${Texts.txtChange()} \$${widget.change}',
+                  style: textStyle),
+            ],
+          );
+        },
+      ),
+    );
+
+    final directory = await getApplicationDocumentsDirectory();
+    final file = File('${directory.path}/invoice.pdf');
+    await file.writeAsBytes(await pdf.save());
+    return file;
+  }
+
+  Future<void> sendEmailWithPdf() async {
+    File pdfFile = await createPdf();
+    debugPrint('${emailText.text} test test test');
+
+    final Email email = Email(
+      body: 'Attached are your transaction details in PDF format.',
+      subject: 'Transaction',
+      recipients: [emailText.text],
+      attachmentPaths: [pdfFile.path],
+      isHTML: false,
+    );
+
+    try {
+      await FlutterEmailSender.send(email);
+    } catch (error) {
+      print(error);
+    }
   }
 }

@@ -131,21 +131,19 @@ class OrderPageState extends State<OrderScreen> {
                                 color: Colors.red,
                                 onPressed: () async {
                                   CustomDialog(
-                                    title: 'Delete this item?',
-                                    subTitle:
-                                        'Are you sure you want to delete this item?',
+                                    title: Texts.titleMsgDelete(),
+                                    subTitle: Texts.descMsgDelete(),
                                     cancelButton: TextButton(
                                       onPressed: () {
                                         Get.back(result: false);
                                       },
-                                      child: const Text('Cancel'),
+                                      child: Text(Texts.cancel()),
                                     ),
                                     deleteButton: ElevatedButton(
                                       onPressed: () {
                                         orderViewModel.deleteOrder(index);
                                         Get.back(result: true);
                                       },
-                                      child: Text('Delete'),
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: Colors.red,
                                         shape: RoundedRectangleBorder(
@@ -153,6 +151,7 @@ class OrderPageState extends State<OrderScreen> {
                                               BorderRadius.circular(10),
                                         ),
                                       ),
+                                      child: Text(Texts.delete()),
                                     ),
                                     radius: 10.0, // set custom radius
                                   );
@@ -179,7 +178,7 @@ class OrderPageState extends State<OrderScreen> {
                   children: [
                     Obx(
                       () => Text(
-                        'Total: \$${calculateTotalPrice().toStringAsFixed(2)}',
+                        '${Texts.txtTotal()} : \$${calculateTotalPrice().toStringAsFixed(2)}',
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -201,9 +200,9 @@ class OrderPageState extends State<OrderScreen> {
                           : () {
                               Get.to(PaymentPage());
                             },
-                      child: const Text(
-                        'Order Now',
-                        style: TextStyle(
+                      child: Text(
+                        Texts.txtOrderNow(),
+                        style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,

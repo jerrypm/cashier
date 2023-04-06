@@ -85,18 +85,18 @@ class _SettingsPageState extends State<SettingsScreen> {
               ),
             ),
             const Divider(),
-            const ListTile(
-              title: Text('Version'),
-              trailing: Text('1.0.0'),
+            ListTile(
+              title: Text(Texts.txtVersion()),
+              trailing: Text(Texts.txtVersionValue()),
             ),
             const Divider(),
             ListTile(
-              title: const Text('Privacy Policy'),
+              title: Text(Texts.txtPrivacy()),
               onTap: () {},
             ),
             const Divider(),
             ListTile(
-              title: const Text('Website'),
+              title: Text(Texts.txtWeb()),
               onTap: () {
                 Get.to(WebViewScreen());
               },
@@ -118,37 +118,37 @@ class _SettingsPageState extends State<SettingsScreen> {
                   ),
                   onPressed: () {
                     CustomDialog(
-                      title: 'Are you sure you want to Logout?',
+                      title: Texts.descMsgLogOut(),
                       subTitle: Texts.empty(),
                       cancelButton: ElevatedButton(
                         onPressed: () {
                           Get.back(result: false);
                         },
-                        child: Text('No'),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.redAccent,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
+                        child: Text(Texts.no()),
                       ),
                       deleteButton: ElevatedButton(
                         onPressed: () {
                           viewModel.navigationLogout(context);
                           Get.back(result: true);
                         },
-                        child: Text('Yes'),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.secondaryColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
+                        child: Text(Texts.yes()),
                       ),
                       radius: 10.0, // set custom radius
                     );
                   },
-                  child: const Text("Logout"),
+                  child: Text(Texts.logout()),
                 ),
               ),
             ),

@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Texts {
   //MARK: Default String
   static String titleApp() => 'Cashier Mate';
@@ -14,11 +12,19 @@ class Texts {
   static String titlePayment() => 'Payment';
   static String titleSetting() => 'Settings';
   static String titleWeb() => 'Web';
+  static String titleHistoryDetail() => 'History Details';
   static String welcomeMsg() => 'Cashier app';
 
   //MARK: Button
   static String signIn() => 'Sign In';
   static String signUp() => 'Sign Up';
+  static String sendEmail() => 'Send Email';
+  static String newOrder() => 'Place New Order';
+  static String cancel() => 'Cancel';
+  static String delete() => 'Delete';
+  static String logout() => 'Logout';
+  static String no() => 'No';
+  static String yes() => 'Yes';
 
   //MARK: Login Page
   static String empty() => '';
@@ -70,10 +76,34 @@ class Texts {
   static String emailLogin = 'admin@mail.com';
   static String passwordLogin = '12345678';
 
+  //MARK: Alert
+  static String titleMsgDelete() => 'Delete this item?';
+  static String descMsgDelete() => 'Are you sure you want to delete this item?';
+  static String descMsgLogOut() => 'Are you sure you want to Logout?';
+
   //MARK: Other
   static String txtSearch() => 'Search...';
   static String txtQuantity() => 'Quantity';
   static String txtNote() => 'Note';
   static String txtCart() => 'Add to Cart';
   static String txtIngredients() => 'Ingredients:';
+  static String txtOrderNow() => 'Order Now';
+
+  static String txtOrder() => 'Order Summary';
+  static String txtSubTot() => 'Sub Total';
+  static String txtTax() => 'Tax(10%)';
+  static String txtTotal() => 'Total';
+  static String txtPayment() => 'Process Payment';
+
+  static String txtSuccess() => 'Success';
+  static String txtTotalItem() => 'Total Items : ';
+  static String txtTotalPaid() => 'Total Paid : ';
+  static String txtCCash() => 'Customer Cash : ';
+  static String txtChange() => 'Change : ';
+  static String txtInputEmail() => 'Enter your email';
+
+  static String txtVersion() => 'Version';
+  static String txtVersionValue() => '1.0.0';
+  static String txtPrivacy() => 'Privacy Policy';
+  static String txtWeb() => 'Website';
 }

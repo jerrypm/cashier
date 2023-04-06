@@ -1,5 +1,6 @@
 import 'package:cashier_mate/utilities/color_custom.dart';
 import 'package:cashier_mate/utilities/items_constant.dart';
+import 'package:cashier_mate/widgets/tab_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -148,20 +149,9 @@ class HomePageState extends State<HomeScreen> {
                                   ),
                                   child: Row(
                                     children: [
-                                      TabsItemsbar()
-                                          .tabs(() => updateList("burger"))[0],
-                                      const Spacer(),
-                                      TabsItemsbar()
-                                          .tabs(() => updateList("pizza"))[1],
-                                      const Spacer(),
-                                      TabsItemsbar().tabs(
-                                          () => updateList("sandwich"))[2],
-                                      const Spacer(),
-                                      TabsItemsbar()
-                                          .tabs(() => updateList("salad"))[3],
-                                      const Spacer(),
-                                      TabsItemsbar()
-                                          .tabs(() => updateList("chick"))[4],
+                                      ...TabsItemsbarIcon(
+                                          onTap: (category) =>
+                                              updateList(category.name)).tabs,
                                     ],
                                   ),
                                 ),

@@ -25,7 +25,6 @@ class _PaymentPageState extends State<PaymentPage> {
 
   void _calculateResult(double totalOrder) {
     double result = totalOrder - double.parse(_calculation);
-    debugPrint("${result} here here");
     _controller.processPayment(result);
   }
 
@@ -66,9 +65,10 @@ class _PaymentPageState extends State<PaymentPage> {
                   const SizedBox(
                     height: 22.0,
                   ),
-                  const Text(
-                    'Order Summary',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  Text(
+                    Texts.txtOrder(),
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(
                     height: 16.0,
@@ -80,9 +80,9 @@ class _PaymentPageState extends State<PaymentPage> {
                       children: [
                         Row(
                           children: [
-                            const Text(
-                              'Sub Total',
-                              style: TextStyle(fontSize: 14),
+                            Text(
+                              Texts.txtSubTot(),
+                              style: const TextStyle(fontSize: 14),
                             ),
                             const Spacer(),
                             Text(
@@ -96,9 +96,9 @@ class _PaymentPageState extends State<PaymentPage> {
                         ),
                         Row(
                           children: [
-                            const Text(
-                              'Tax(10%)',
-                              style: TextStyle(fontSize: 14),
+                            Text(
+                              Texts.txtTax(),
+                              style: const TextStyle(fontSize: 14),
                             ),
                             const Spacer(),
                             Text(
@@ -112,14 +112,14 @@ class _PaymentPageState extends State<PaymentPage> {
                         ),
                         Row(
                           children: [
-                            const Text(
-                              'Total',
-                              style: TextStyle(fontSize: 14),
+                            Text(
+                              Texts.txtTotal(),
+                              style: const TextStyle(fontSize: 14),
                             ),
                             const Spacer(),
                             Text(
                               '\$${totalOrder.toStringAsFixed(2)}',
-                              style: TextStyle(fontSize: 14),
+                              style: const TextStyle(fontSize: 14),
                             ),
                           ],
                         ),
@@ -134,15 +134,15 @@ class _PaymentPageState extends State<PaymentPage> {
               TextFormField(
                 controller: TextEditingController(text: _calculation),
                 readOnly: true,
-                decoration: const InputDecoration(
-                  labelText: 'Customer Money',
+                decoration: InputDecoration(
+                  labelText: Texts.txtCCash(),
                   hintText: '0',
-                  labelStyle: TextStyle(
+                  labelStyle: const TextStyle(
                     fontSize: 17.0,
                     height: 0.1,
                     color: Colors.grey,
                   ),
-                  focusedBorder: UnderlineInputBorder(
+                  focusedBorder: const UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey),
                   ),
                 ),
@@ -161,7 +161,6 @@ class _PaymentPageState extends State<PaymentPage> {
                           _calculateResult(totalOrder);
                         }
                       : null,
-                  child: Text('Process Payment'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.secondaryColor.withOpacity(0.6),
                     minimumSize: const Size(double.infinity, 44),
@@ -169,6 +168,7 @@ class _PaymentPageState extends State<PaymentPage> {
                       borderRadius: BorderRadius.circular(22),
                     ),
                   ),
+                  child: Text(Texts.txtPayment()),
                 ),
               ),
               const SizedBox(height: 32.0),
@@ -218,8 +218,6 @@ class _PaymentPageState extends State<PaymentPage> {
           ),
         ),
       ),
-
-      //line bottom
     );
   }
 
@@ -229,15 +227,14 @@ class _PaymentPageState extends State<PaymentPage> {
         onPressed: () {
           _addToCalculation(label);
         },
-        child: Text(label),
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.secondaryColor.withOpacity(0.4),
           minimumSize: const Size(double.infinity, 44),
           shape: RoundedRectangleBorder(
-            borderRadius:
-                BorderRadius.circular(10), // Setengah dari tinggi button
+            borderRadius: BorderRadius.circular(10),
           ),
         ),
+        child: Text(label),
       ),
     );
   }

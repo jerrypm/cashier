@@ -24,11 +24,17 @@ class CartController extends GetxController {
 
   void processPayment(double result) {
     // Tambahkan logika pembayaran di sini
-    // Get.back();
-    // Get.to(PaymentSuccessPage(totalItem: 10, totalPaid: 1100, change: 10));
+
     Get.off(
-      () => PaymentSuccessPage(totalItem: 10, totalPaid: 1100, change: 10),
-      transition: Transition.noTransition, // Pilih transisi yang diinginkan
+      () => PaymentSuccessPage(
+        totalItem: 10,
+        totalPaid: 55,
+        cash: 60,
+        change: 5,
+        date: '25 Des 2024',
+        itemsNumber: '#0001',
+      ),
+      transition: Transition.noTransition,
     );
   }
 }

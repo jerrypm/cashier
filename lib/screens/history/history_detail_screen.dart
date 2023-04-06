@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../Utilities/string_constant.dart';
 import '../../utilities/color_custom.dart';
 
 class Item {
@@ -29,7 +30,17 @@ class HistoryDetails extends StatelessWidget {
       backgroundColor: AppColors.backgroundColor,
 
       //MARK: AppBar
-      appBar: AppBar(title: Text('History Details')),
+      appBar: AppBar(
+        backgroundColor: AppColors.backgroundColor,
+        elevation: 0,
+        title: Text(
+          Texts.titleHistoryDetail(),
+          style: const TextStyle(
+            color: AppColors.textColor,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
 
       //MARK: Body
       body: Padding(
@@ -39,14 +50,14 @@ class HistoryDetails extends StatelessWidget {
           children: [
             Text('#$orderNumber',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(date, style: TextStyle(fontSize: 18)),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text('Transaction Total: \$$transactionTotal',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text('Items:', style: TextStyle(fontSize: 18)),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Expanded(
               child: ListView.builder(
                 itemCount: items.length,
@@ -58,14 +69,14 @@ class HistoryDetails extends StatelessWidget {
                 },
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
                 // kirim ke email
               },
               child: Text('Send to Email'),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             TextButton(
               onPressed: () {
                 // refund

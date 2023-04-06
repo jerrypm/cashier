@@ -28,6 +28,9 @@ dependencies:
   # flutter_facebook_auth: ^5.0.8
   provider: ^6.0.5
   webview_flutter: ^4.0.7
+  pdf: ^3.7.0
+  flutter_email_sender: ^5.2.0
+  path_provider: ^2.0.14
 
 flutter_icons: #<-- asset add in here
   android: "launcher_icon"
