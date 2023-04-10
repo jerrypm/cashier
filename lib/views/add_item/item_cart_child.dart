@@ -1,4 +1,5 @@
 import 'package:cashier_mate/utilities/color_custom.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../utilities/string_constant.dart';
 import '../../models/menu_model.dart';
@@ -87,9 +88,16 @@ class ItemCartChildPage extends State<ItemCartChild> {
                 widget.onNoteChanged(value);
               },
               decoration: InputDecoration(
-                labelText: Texts.txtNote(),
+                hintText: Texts.txtNote(),
                 border: const OutlineInputBorder(),
-                prefixIcon: const Icon(Icons.note),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                      color: AppColors.secondaryColor.withOpacity(0.6)),
+                ),
+                prefixIcon: Icon(
+                  CupertinoIcons.doc_text,
+                  color: AppColors.secondaryColor.withOpacity(0.6),
+                ),
               ),
               minLines: 1,
               maxLines: 7,

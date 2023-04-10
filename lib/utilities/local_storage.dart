@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/auth_model.dart';
 import '../models/order_model.dart';
+import '../models/transaction_model.dart';
 
 class LocalStorage {
   static const String _userKey = 'user';
@@ -42,10 +43,9 @@ class LocalStorage {
   }
 
   //MARK: Delete All List
-  Future<void> deleteOrder(Order order) async {
+  Future<void> deleteAllOrders() async {
     final prefs = await SharedPreferences.getInstance();
-    final orders = await getOrders();
-    orders.remove(order);
+    final orders = <Order>[];
     final jsonString = json.encode(orders.map((e) => e.toJson()).toList());
     await prefs.setString(_ordersKey, jsonString);
   }
@@ -59,20 +59,26 @@ class LocalStorage {
     await prefs.setString(_ordersKey, jsonString);
   }
 
-  // // Menyimpan riwayat transaksi ==============================================
-  // Future<void> saveTransaction(Transaction transaction) async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   final transactions = await getTransactions();
-  //   transactions.add(transaction);
-  //   final jsonString = json.encode(transactions.map((e) => e.toJson()).toList());
-  //   await prefs.setString(_historyKey, jsonString);
-  // }
+  //MARK: Save Transaction ==============================================
+  Future<void> saveTransaction(Transaction transaction) async {
+    final prefs = await SharedPreferences.getInstance();
+    final transactions = await getTransactions();
+    transactions.add(transaction);
 
-  // // Mengambil semua riwayat transaksi
-  // Future<List<Transaction>> getTransactions() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   final jsonString = prefs.getString(_historyKey) ?? '[]';
-  //   final jsonList = json.decode(jsonString) as List;
-  //   return jsonList.map((e) => Transaction.fromJson(e)).toList();
-  // }
+    final jsonString = json.encode(transactions.map((e) {
+      final jsonMap = e.toJson();
+      jsonMap['date'] = jsonMap['date']?.toIso8601String();
+      return jsonMap;
+    }).toList());
+
+    await prefs.setString(_historyKey, jsonString);
+  }
+
+  //MARK: Get All List Transaction
+  Future<List<Transaction>> getTransactions() async {
+    final prefs = await SharedPreferences.getInstance();
+    final jsonString = prefs.getString(_historyKey) ?? '[]';
+    final jsonList = json.decode(jsonString) as List;
+    return jsonList.map((e) => Transaction.fromJson(e)).toList();
+  }
 }

@@ -1,9 +1,12 @@
 // ignore_for_file: camel_case_types
 
+import 'package:get/get.dart';
+
 import '../../utilities/color_custom.dart';
 import 'package:flutter/material.dart';
 import '../../../Utilities/string_constant.dart';
 import '../../../view_models/auth_view_models.dart';
+import '../settings/webview_screen.dart';
 
 class loginScreen extends StatefulWidget {
   const loginScreen({
@@ -134,9 +137,16 @@ class LoginPage extends State<loginScreen> {
                 const SizedBox(height: 16.0),
                 Container(
                   alignment: Alignment.centerRight,
-                  child: Text(
-                    Texts.forgotPass(),
-                    textAlign: TextAlign.right,
+                  child: InkWell(
+                    onTap: () {
+                      Get.to(WebViewScreen(
+                        urlString: Texts.urlFAQ(),
+                      ));
+                    },
+                    child: Text(
+                      Texts.forgotPass(),
+                      textAlign: TextAlign.right,
+                    ),
                   ),
                 ),
 

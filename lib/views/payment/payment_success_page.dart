@@ -1,11 +1,16 @@
-import 'package:cashier_mate/utilities/string_constant.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+// ignore_for_file: depend_on_referenced_packages
+
 import 'dart:io';
+
+import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart'; // DateFormat
+import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
-import 'package:path_provider/path_provider.dart';
+
+import 'package:cashier_mate/utilities/string_constant.dart';
 
 import '../../app/main_page.dart';
 import '../../utilities/color_custom.dart';
@@ -13,7 +18,7 @@ import '../../utilities/color_custom.dart';
 class PaymentSuccessPage extends StatefulWidget {
   final String itemsNumber;
   final String date;
-  final int totalItem;
+  final String totalItem;
   final double totalPaid;
   final double cash;
   final double change;
@@ -298,7 +303,10 @@ class PaymentSuccessPageState extends State<PaymentSuccessPage>
     );
   }
 
+  //MARK: - Create PDF File
   Future<File> createPdf() async {
+    String formattedDate =
+        DateFormat(Texts.dateFormat()).format(DateTime.now());
     final pdf = pw.Document();
 
     final titleStyle =
@@ -312,21 +320,37 @@ class PaymentSuccessPageState extends State<PaymentSuccessPage>
           return pw.Column(
             crossAxisAlignment: pw.CrossAxisAlignment.start,
             children: [
-              pw.Text('Item number: #001', style: titleStyle),
+              pw.Text('${Texts.txtItemNum()} ${widget.itemsNumber}',
+                  style: titleStyle), // change number transaction
               separator,
               pw.SizedBox(height: 10),
-              pw.Text('Date: 25-12-2023', style: textStyle),
-              pw.SizedBox(height: 5),
-              pw.Text('${Texts.txtTotalItem()} ${widget.totalItem}',
-                  style: textStyle),
-              pw.SizedBox(height: 5),
-              pw.Text('${Texts.txtTotalPaid()} \$${widget.totalPaid}',
-                  style: textStyle),
-              pw.SizedBox(height: 5),
-              pw.Text('${Texts.txtCCash()} \$${widget.cash}', style: textStyle),
-              pw.SizedBox(height: 5),
-              pw.Text('${Texts.txtChange()} \$${widget.change}',
-                  style: textStyle),
+              pw.Text('Date: $formattedDate', style: textStyle),
+              separator,
+              pw.SizedBox(height: 8),
+              pw.Row(children: [
+                pw.Text('${Texts.txtTotalItem()} :', style: textStyle),
+                pw.Spacer(),
+                pw.Text('${widget.totalItem}', style: textStyle),
+              ]),
+              pw.SizedBox(height: 8),
+              pw.Row(children: [
+                pw.Text('${Texts.txtTotalPaid()} :', style: textStyle),
+                pw.Spacer(),
+                pw.Text('\$${widget.totalPaid}', style: textStyle),
+              ]),
+              pw.SizedBox(height: 8),
+              pw.Row(children: [
+                pw.Text('${Texts.txtCCash()} :', style: textStyle),
+                pw.Spacer(),
+                pw.Text('\$${widget.cash}', style: textStyle),
+              ]),
+              pw.SizedBox(height: 8),
+              pw.Row(children: [
+                pw.Text('${Texts.txtChange()} :', style: textStyle),
+                pw.Spacer(),
+                pw.Text('\$${widget.change}', style: textStyle),
+              ]),
+              separator,
             ],
           );
         },
@@ -339,13 +363,14 @@ class PaymentSuccessPageState extends State<PaymentSuccessPage>
     return file;
   }
 
+  //MARK: - Email send
+  // - note: For use this code email you need real device
   Future<void> sendEmailWithPdf() async {
     File pdfFile = await createPdf();
-    debugPrint('${emailText.text} test test test');
 
     final Email email = Email(
-      body: 'Attached are your transaction details in PDF format.',
-      subject: 'Transaction',
+      body: Texts.emailBody(),
+      subject: Texts.emailSubject(),
       recipients: [emailText.text],
       attachmentPaths: [pdfFile.path],
       isHTML: false,

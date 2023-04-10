@@ -131,7 +131,9 @@ class AddItemsPageState extends State<AddItemsPage> {
                             title: widget.foodItem.title,
                             desc: widget.foodItem.desc,
                             items: _itemCount,
-                            totalPrice: double.parse(_total),
+                            price: _total.isEmpty
+                                ? widget.foodItem.price
+                                : double.parse(_total),
                             date: DateTime.now(),
                           );
                           setState(() {

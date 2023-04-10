@@ -1,10 +1,14 @@
+import 'dart:ffi';
+
 import 'package:cashier_mate/models/order_model.dart';
+import 'package:cashier_mate/models/transaction_model.dart';
 import 'package:cashier_mate/screens/order/payment_page.dart';
 import 'package:cashier_mate/utilities/alert_dialog.dart';
 import 'package:cashier_mate/utilities/string_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../utilities/color_custom.dart';
+import '../../view_models/cart_view_models.dart';
 import '../../view_models/main_view_models.dart';
 
 class OrderScreen extends StatefulWidget {
@@ -16,10 +20,16 @@ class OrderScreen extends StatefulWidget {
 
 class OrderPageState extends State<OrderScreen> {
   final MainViewModel orderViewModel = Get.put(MainViewModel());
+  final CartController cartViewModel = Get.put(CartController());
 
   double calculateTotalPrice() {
     return orderViewModel.orders
-        .fold(0, (sum, product) => sum + product.totalPrice!);
+        .fold(0, (sum, product) => sum + product.price!);
+  }
+
+  int calculateTotalItem() {
+    return orderViewModel.orders
+        .fold(0, (sum, product) => sum + (product.items ?? 0));
   }
 
   //MARK: Search
@@ -54,16 +64,20 @@ class OrderPageState extends State<OrderScreen> {
         padding: const EdgeInsets.all(12.0),
         child: Column(
           children: [
-            if (orderViewModel.orders.isEmpty)
-              Expanded(
-                child: Center(
-                  child: Image.asset(
-                    Texts.placeholderList(),
-                    width: 200,
-                    height: 200,
+            Obx(
+              () => Visibility(
+                visible: orderViewModel.orders.isEmpty,
+                child: Expanded(
+                  child: Center(
+                    child: Image.asset(
+                      Texts.placeholderList(),
+                      width: 200,
+                      height: 200,
+                    ),
                   ),
                 ),
               ),
+            ),
             Expanded(
               child: Obx(
                 () => RefreshIndicator(
@@ -116,7 +130,7 @@ class OrderPageState extends State<OrderScreen> {
                               ),
                               child: Center(
                                 child: Text(
-                                  '\$${order.totalPrice}',
+                                  '\$${order.price}',
                                   style: const TextStyle(
                                       fontSize: 16, color: Colors.white),
                                 ),
@@ -166,18 +180,19 @@ class OrderPageState extends State<OrderScreen> {
                 ),
               ),
             ),
-            if (orderViewModel.orders.isNotEmpty)
-              Container(
-                decoration: BoxDecoration(
-                  color: AppColors.secondaryColor.withOpacity(0.6),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                padding: const EdgeInsets.all(16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Obx(
-                      () => Text(
+            Obx(
+              () => Visibility(
+                visible: orderViewModel.orders.isNotEmpty,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.secondaryColor.withOpacity(0.6),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
                         '${Texts.txtTotal()} : \$${calculateTotalPrice().toStringAsFixed(2)}',
                         style: const TextStyle(
                           fontSize: 18,
@@ -185,33 +200,39 @@ class OrderPageState extends State<OrderScreen> {
                           color: Colors.white,
                         ),
                       ),
-                    ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.accentColor,
-                        padding: const EdgeInsets.all(16),
-                        side: const BorderSide(color: Colors.grey, width: 2),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.accentColor,
+                          padding: const EdgeInsets.all(16),
+                          side: const BorderSide(color: Colors.grey, width: 2),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                        onPressed: orderViewModel.orders.isEmpty
+                            ? null
+                            : () {
+                                cartViewModel.createTransaction(
+                                  orderViewModel.orders,
+                                  (calculateTotalPrice() * 0.1),
+                                  calculateTotalPrice(),
+                                  calculateTotalItem().toString(),
+                                );
+                              },
+                        child: Text(
+                          Texts.txtOrderNow(),
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
-                      onPressed: orderViewModel.orders.isEmpty
-                          ? null
-                          : () {
-                              Get.to(PaymentPage());
-                            },
-                      child: Text(
-                        Texts.txtOrderNow(),
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
+            ),
           ],
         ),
       ),

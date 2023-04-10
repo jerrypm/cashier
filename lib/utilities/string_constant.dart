@@ -25,6 +25,7 @@ class Texts {
   static String logout() => 'Logout';
   static String no() => 'No';
   static String yes() => 'Yes';
+  static String close() => 'Close';
 
   //MARK: Login Page
   static String empty() => '';
@@ -66,11 +67,16 @@ class Texts {
   static String regExEmail() =>
       r'^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$';
   static String regExPass() => r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,}$';
+  static String dateFormat() => 'dd MMM yyyy';
+  static String dateFormatTime() => "jm";
 
   //MARK: URL
   static String baseUrl() => 'http://restapi.adequateshop.com/api/';
   static String baseUrlGit() => 'https://gist.githubusercontent.com/jerrypm/';
-  static String baseUrlLocal() => 'http://0.0.0.0:3003/';
+  static String baseUrlLocal() => 'http://0.0.0.0:3003/'; // Local Mockoon
+  static String urlComentor() => 'https://comentor.id/';
+  static String urlFAQ() =>
+      'https://docs.google.com/document/d/1ihaiwjo8JKPfp7fbhaknDTrlOMoIcCL9Mo9oK0aASvY/view';
 
   // Hardcoded login credentials
   static String emailLogin = 'admin@mail.com';
@@ -80,6 +86,10 @@ class Texts {
   static String titleMsgDelete() => 'Delete this item?';
   static String descMsgDelete() => 'Are you sure you want to delete this item?';
   static String descMsgLogOut() => 'Are you sure you want to Logout?';
+
+  static String emailBody() =>
+      'Attached are your transaction details in PDF format.';
+  static String emailSubject() => 'Transaction';
 
   //MARK: Other
   static String txtSearch() => 'Search...';
@@ -101,9 +111,13 @@ class Texts {
   static String txtCCash() => 'Customer Cash : ';
   static String txtChange() => 'Change : ';
   static String txtInputEmail() => 'Enter your email';
+  static String txtItemNum() => 'Item number :';
 
   static String txtVersion() => 'Version';
   static String txtVersionValue() => '1.0.0';
-  static String txtPrivacy() => 'Privacy Policy';
+  static String txtPrivacy() => 'FAQ';
   static String txtWeb() => 'Website';
+
+  static String txtTotalHistory() => 'Total :';
+  static String txtItems() => 'List of Items ';
 }

@@ -1,3 +1,4 @@
+import 'package:cashier_mate/utilities/string_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,7 +16,7 @@ Future<void> showConfirmationDialog(
             onPressed: () {
               Get.back();
             },
-            child: const Text('Close'),
+            child: Text(Texts.close()),
           ),
         ],
       );

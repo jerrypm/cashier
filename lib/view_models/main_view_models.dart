@@ -106,6 +106,14 @@ class MainViewModel extends GetxController {
     update();
   }
 
+  //MARK: Delete ALl data
+
+  void deleteAllOrder() async {
+    orders.clear();
+    await _localStorage.deleteAllOrders();
+    update();
+  }
+
   /*
     MARK: load data User
   */

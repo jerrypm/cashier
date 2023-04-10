@@ -5,6 +5,10 @@ import '../../Utilities/string_constant.dart';
 import '../../utilities/color_custom.dart';
 
 class WebViewScreen extends StatefulWidget {
+  final String urlString;
+
+  const WebViewScreen({super.key, required this.urlString});
+
   @override
   _WebViewScreenState createState() => _WebViewScreenState();
 }
@@ -30,7 +34,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
           },
         ),
       )
-      ..loadRequest(Uri.parse('https://comentor.id/'));
+      ..loadRequest(Uri.parse(widget.urlString));
     super.initState();
   }
 

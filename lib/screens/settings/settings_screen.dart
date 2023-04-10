@@ -92,13 +92,19 @@ class _SettingsPageState extends State<SettingsScreen> {
             const Divider(),
             ListTile(
               title: Text(Texts.txtPrivacy()),
-              onTap: () {},
+              onTap: () {
+                Get.to(WebViewScreen(
+                  urlString: Texts.urlFAQ(),
+                ));
+              },
             ),
             const Divider(),
             ListTile(
               title: Text(Texts.txtWeb()),
               onTap: () {
-                Get.to(WebViewScreen());
+                Get.to(WebViewScreen(
+                  urlString: Texts.urlComentor(),
+                ));
               },
             ),
             const Divider(),

@@ -6,7 +6,7 @@ class Order {
   final String? title;
   final String? desc;
   final int? items;
-  final double? totalPrice;
+  final double? price;
   final DateTime? date;
 
   Order({
@@ -15,7 +15,7 @@ class Order {
     this.title,
     this.desc,
     this.items,
-    this.totalPrice,
+    this.price,
     this.date,
   });
 
@@ -26,7 +26,7 @@ class Order {
       title: json['title'],
       desc: json['desc'],
       items: json['items'],
-      totalPrice: json['total_price'],
+      price: json['price'],
       date: DateTime.parse(json['date']),
     );
   }
@@ -38,7 +38,7 @@ class Order {
       'title': title,
       'desc': desc,
       'items': items,
-      'total_price': totalPrice,
+      'price': price,
       'date': date?.toIso8601String(),
     };
   }

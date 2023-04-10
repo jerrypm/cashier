@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../Utilities/string_constant.dart';
+import '../../models/transaction_model.dart';
 import '../../utilities/color_custom.dart';
 import '../../view_models/cart_view_models.dart';
 import '../../widgets/button_item.dart';
 
 class PaymentPage extends StatefulWidget {
-  const PaymentPage({Key? key}) : super(key: key);
+  final Transaction transactions;
+  const PaymentPage({Key? key, required this.transactions}) : super(key: key);
 
   @override
   _PaymentPageState createState() => _PaymentPageState();
@@ -24,14 +26,15 @@ class _PaymentPageState extends State<PaymentPage> {
   }
 
   void _calculateResult(double totalOrder) {
-    double result = totalOrder - double.parse(_calculation);
-    _controller.processPayment(result);
+    double result = double.parse(_calculation) - totalOrder;
+    _controller.processPayment(
+        widget.transactions, double.parse(_calculation), result);
   }
 
   @override
   Widget build(BuildContext context) {
-    double order = _controller.totalOrder;
-    double tax = (_controller.totalOrder * 0.1);
+    double order = widget.transactions.totalPrice;
+    double tax = widget.transactions.tax;
     double totalOrder = order + tax;
 
     return Scaffold(
@@ -244,10 +247,12 @@ class _PaymentPageState extends State<PaymentPage> {
       buttonText: value,
       onPressed: () {
         setState(() {
-          if (value.isEmpty) {
-            _calculation = _calculation.substring(0, _calculation.length - 1);
-          } else {
-            _calculation = '';
+          if (_calculation.isNotEmpty) {
+            if (value.isEmpty) {
+              _calculation = _calculation.substring(0, _calculation.length - 1);
+            } else {
+              _calculation = '';
+            }
           }
         });
       },
