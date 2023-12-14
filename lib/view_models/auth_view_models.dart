@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 /*
 
 MARK: Login View Model
+If you want to update version contact me
 
 */
 class LoginViewModel {
